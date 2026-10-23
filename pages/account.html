@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Личный кабинет | stoboy</title>
+    <link rel="icon" href="../assets/images/common/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="../styles/css/pages/account.css">
+
+</head>
+
+<body>
+    <header class="header">
+        <div class="header__content">
+            <div class="header__logo">
+                <a href="../index.html">
+                    <img class="hidden-desktop" src="../assets/images/common/logo.svg" alt="лого cat-stoboy">
+                    <img class="hidden-mobile" src="../assets/images/common/logo-mob.svg" alt="лого-моб cat-stoboy"
+                        loading="lazy">
+                </a>
+            </div>
+            <nav class="header__nav">
+                <ul>
+                    <li><a href="catalog.html">каталог</a></li>
+                    <li><a href="../index.html#shelves">полочки</a></li>
+                    <li><a href="../index.html#contacts">контакты</a></li>
+                    <li><a href="../index.html#reviews">отзывы</a></li>
+                    <li><a href="../index.html#faq">faq</a></li>
+                </ul>
+            </nav>
+            <div class="header__controls">
+                <a href="account.html">
+                    <img src="../assets/images/ui/account.svg" alt="аккаунт">
+                </a>
+                <a href="cart.html">
+                    <img src="../assets/images/ui/cart.svg" alt="корзина">
+                </a>
+                <button class="header__open hidden-mobile">
+                    <img src="../assets/images/ui/open-menu.svg" alt="меню">
+                </button>
+            </div>
+            <nav class="header__mobile-nav">
+                <ul>
+                    <li><a href="catalog.html">каталог</a></li>
+                    <li><a href="../index.html#shelves">полочки</a></li>
+                    <li><a href="../index.html#contacts">контакты</a></li>
+                    <li><a href="../index.html#reviews">отзывы</a></li>
+                    <li><a href="../index.html#faq">faq</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="menu-overlay"></div>
+
+        <section class="navigation">
+            <div class="navigation__content">
+                <h1><span>//</span>аккаунт</h1>
+                <div class="navigation__links">
+                    <div><button data-target="deliveries">доставки</button></div>
+                    <div><button data-target="orders">покупки</button></div>
+                    <div><button data-target="personal">личные данные</button></div>
+                    <div><button data-target="privacy">политика конфиденциальности</button></div>
+                </div>
+                <button class="navigation__exit" data-target="exit">выход <img
+                        src="../assets/images/common/stickers/jopik.svg" alt="попи"></button>
+            </div>
+        </section>
+
+        <div class="account__content">
+
+            <div data-section="deliveries" class="deliveries account__sections">
+                <section class="delivery">
+                    <div class="delivery__content account__section-content">
+                        <h2><span>//</span> заказ от <time datetime="2025-05-01">01.05.2025</time></h2>
+
+                        <div class="delivery__content_top">
+                            <div class="delivery__adress">
+                                <img src="../assets/images/common/stickers/map.svg" alt="" aria-hidden="true"
+                                    role="presentation" loading="lazy">
+                                <p><span>Москва, ул. Тихомирова, 10</span>
+                                    <span>Пункт выдачи</span>
+                                </p>
+                            </div>
+                            <button class="delivery__track-number">
+                                трек номер <span> 1234567890</span>
+                            </button>
+                        </div>
+                        <div class="delivery__content_center">
+                            <div class="delivery__card"
+                                data-images='["/assets/images/pages/catalog/key-rings-angel-marzipan.webp"]'
+                                data-title="«Ангел Марципан»" data-price="400" data-size="3.5 см" data-count="3"
+                                data-description='["Розовый блестящий акрил", "Розовой карабин"]'>
+                                <img src="/assets/images/pages/catalog/key-rings-angel-marzipan.webp" alt="">
+                                <h3 class="long-title">«Ангел Марципан»</h3>
+                                <p class="delivery__price">400р.</p>
+                            </div>
+                            <div class="delivery__card"
+                                data-images='["/assets/images/pages/catalog/key-rings-sleepy-gacha.webp", "/assets/images/pages/catalog/key-rings-sleepy-gacha.webp", "/assets/images/pages/catalog/key-rings-sleepy-gacha.webp"]'
+                                data-title="«Слипи гача»" data-price="400" data-size="2.5 см" data-count="2"
+                                data-description='["Двухслойный акрил", "Фурнитура нить белая/бирюзовая/лавандовая"]'>
+                                <img src="/assets/images/pages/catalog/key-rings-sleepy-gacha.webp" alt="">
+                                <h3>«Слипи гача»</h3>
+                                <p class="delivery__price">400р.</p>
+                            </div>
+                            <div class="delivery__card"
+                                data-images='["/assets/images/pages/catalog/key-rings-angel-moty.webp"]'
+                                data-title="«Ангел Моти»" data-price="400" data-size="3.5 см" data-count="4"
+                                data-description='["Блестяций акрил звезды", "Голубой карабин"]'>
+                                <img src="/assets/images/pages/catalog/key-rings-angel-moty.webp" alt="">
+                                <h3>«Ангел Моти»</h3>
+                                <p class="delivery__price">400р.</p>
+                            </div>
+                            <div class="delivery__card"
+                                data-images='["/assets/images/pages/catalog/key-rings-angel-tofu.webp"]'
+                                data-title="«Ангел Тофу»" data-price="400" data-size="3.5 см" data-count="5"
+                                data-description='["Блестяций акрил крупные звезды", "Бирюзовый карабин"]'>
+                                <img src="/assets/images/pages/catalog/key-rings-angel-tofu.webp" alt="">
+                                <h3>«Ангел Тофу»</h3>
+                                <p class="delivery__price">400р.</p>
+                            </div>
+                            <div class="delivery__card"
+                                data-images='["/assets/images/pages/catalog/key-rings-angel-tofu.webp"]'
+                                data-title="«Ангел Тофу»" data-price="400" data-size="3.5 см" data-count="5"
+                                data-description='["Блестяций акрил крупные звезды", "Бирюзовый карабин"]'>
+                                <img src="/assets/images/pages/catalog/key-rings-angel-tofu.webp" alt="">
+                                <h3>«Ангел Тофу»</h3>
+                                <p class="delivery__price">400р.</p>
+                            </div>
+                            <button class="last">
+                                ещё 3
+                            </button>
+                        </div>
+                        <div class="delivery__content_bottom">
+                            <div class="delivery__links">
+                                <a href="https://www.cdek.ru/ru/tracking" target="_blank">> отследить на сайте CDEK</a>
+                                <a href="../index.html#faq">? появился вопрос</a>
+                            </div>
+                            <div class="delivery__sum">
+                                <p>итого: <span>3000</span>р.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="delivery">
+                    <div class="delivery__content account__section-content">
+                        <h2><span>//</span> заказ от <time datetime="2025-04-22">22.04.2025</time></h2>
+
+                        <div class="delivery__content_top">
+                            <div class="delivery__adress">
+                                <img src="../assets/images/common/stickers/map.svg" alt="" aria-hidden="true"
+                                    role="presentation" loading="lazy">
+                                <p><span>Москва, ул. Тихомирова, 10</span>
+                                    <span>Пункт выдачи</span>
+                                </p>
+                            </div>
+                            <button class="delivery__track-number">
+                                трек номер <span> 3788098949</span>
+                            </button>
+                        </div>
+
+                        <div class="delivery__content_center">
+                            <div class="delivery__card"
+                                data-images='["/assets/images/pages/catalog/key-rings-angel-marzipan.webp"]'
+                                data-title="«Ангел Марципан»" data-price="400" data-size="3.5 см" data-count="3"
+                                data-description='["Розовый блестящий акрил", "Розовой карабин"]'>
+                                <img src="/assets/images/pages/catalog/key-rings-angel-marzipan.webp" alt="">
+                                <h3 class="long-title">«Ангел Марципан»</h3>
+                                <p class="delivery__price">400р.</p>
+                            </div>
+                            <div class="delivery__card"
+                                data-images='["/assets/images/pages/catalog/key-rings-sleepy-gacha.webp", "/assets/images/pages/catalog/key-rings-sleepy-gacha.webp", "/assets/images/pages/catalog/key-rings-sleepy-gacha.webp"]'
+                                data-title="«Слипи гача»" data-price="400" data-size="2.5 см" data-count="2"
+                                data-description='["Двухслойный акрил", "Фурнитура нить белая/бирюзовая/лавандовая"]'>
+                                <img src="/assets/images/pages/catalog/key-rings-sleepy-gacha.webp" alt="">
+                                <h3>«Слипи гача»</h3>
+                                <p class="delivery__price">400р.</p>
+                            </div>
+                            <div class="delivery__card"
+                                data-images='["/assets/images/pages/catalog/key-rings-angel-moty.webp"]'
+                                data-title="«Ангел Моти»" data-price="400" data-size="3.5 см" data-count="4"
+                                data-description='["Блестяций акрил звезды", "Голубой карабин"]'>
+                                <img src="/assets/images/pages/catalog/key-rings-angel-moty.webp" alt="">
+                                <h3>«Ангел Моти»</h3>
+                                <p class="delivery__price">400р.</p>
+                            </div>
+                            <div class="delivery__card"
+                                data-images='["/assets/images/pages/catalog/key-rings-angel-tofu.webp"]'
+                                data-title="«Ангел Тофу»" data-price="400" data-size="3.5 см" data-count="5"
+                                data-description='["Блестяций акрил крупные звезды", "Бирюзовый карабин"]'>
+                                <img src="/assets/images/pages/catalog/key-rings-angel-tofu.webp" alt="">
+                                <h3>«Ангел Тофу»</h3>
+                                <p class="delivery__price">400р.</p>
+                            </div>
+                            <div class="delivery__card"
+                                data-images='["/assets/images/pages/catalog/key-rings-angel-tofu.webp"]'
+                                data-title="«Ангел Тофу»" data-price="400" data-size="3.5 см" data-count="5"
+                                data-description='["Блестяций акрил крупные звезды", "Бирюзовый карабин"]'>
+                                <img src="/assets/images/pages/catalog/key-rings-angel-tofu.webp" alt="">
+                                <h3>«Ангел Тофу»</h3>
+                                <p class="delivery__price">400р.</p>
+                            </div>
+                            <div class="delivery__card"
+                                data-images='["/assets/images/pages/catalog/key-rings-sleepy-gacha.webp", "/assets/images/pages/catalog/key-rings-sleepy-gacha.webp", "/assets/images/pages/catalog/key-rings-sleepy-gacha.webp"]'
+                                data-title="«Слипи гача»" data-price="400" data-size="2.5 см" data-count="2"
+                                data-description='["Двухслойный акрил", "Фурнитура нить белая/бирюзовая/лавандовая"]'>
+                                <img src="/assets/images/pages/catalog/key-rings-sleepy-gacha.webp" alt="">
+                                <h3>«Слипи гача»</h3>
+                                <p class="delivery__price">400р.</p>
+                            </div>
+                            
+                            <div class="delivery__card"
+                                data-images='["/assets/images/pages/catalog/key-rings-angel-marzipan.webp"]'
+                                data-title="«Ангел Марципан»" data-price="400" data-size="3.5 см" data-count="3"
+                                data-description='["Розовый блестящий акрил", "Розовой карабин"]'>
+                                <img src="/assets/images/pages/catalog/key-rings-angel-marzipan.webp" alt="">
+                                <h3 class="long-title">«Ангел Марципан»</h3>
+                                <p class="delivery__price">400р.</p>
+                            </div>
+                            
+                            <button class="last">
+                                ещё 3
+                            </button>
+                        </div>
+                        <div class="delivery__content_bottom">
+                            <div class="delivery__links">
+                                <a href="https://www.cdek.ru/ru/tracking" target="_blank">> отследить на сайте CDEK</a>
+                                <a href="../index.html#faq">? появился вопрос</a>
+                            </div>
+                            <div class="delivery__sum">
+                                <p>итого: <span>3000</span>р.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="delivery">
+                    <div class="delivery__content account__section-content">
+                        <h2><span>//</span> заказ от <time datetime="2025-04-22">22.04.2025</time></h2>
+
+                        <div class="delivery__content_top">
+                            <div class="delivery__adress">
+                                <img src="../assets/images/common/stickers/map.svg" alt="" aria-hidden="true"
+                                    role="presentation" loading="lazy">
+                                <p><span>Москва, ул. Тихомирова, 10</span>
+                                    <span>Пункт выдачи</span>
+                                </p>
+                            </div>
+                            <button class="delivery__track-number">
+                                трек номер <span> 3788098949</span>
+                            </button>
+                        </div>
+
+                        <div class="delivery__content_center">
+                            <div class="delivery__card"
+                                data-images='["/assets/images/pages/catalog/key-rings-angel-marzipan.webp"]'
+                                data-title="«Ангел Марципан»" data-price="400" data-size="3.5 см" data-count="3"
+                                data-description='["Розовый блестящий акрил", "Розовой карабин"]'>
+                                <img src="/assets/images/pages/catalog/key-rings-angel-marzipan.webp" alt="">
+                                <h3 class="long-title">«Ангел Марципан»</h3>
+                                <p class="delivery__price">400р.</p>
+                            </div>
+                            <div class="delivery__card"
+                                data-images='["/assets/images/pages/catalog/key-rings-sleepy-gacha.webp", "/assets/images/pages/catalog/key-rings-sleepy-gacha.webp", "/assets/images/pages/catalog/key-rings-sleepy-gacha.webp"]'
+                                data-title="«Слипи гача»" data-price="400" data-size="2.5 см" data-count="2"
+                                data-description='["Двухслойный акрил", "Фурнитура нить белая/бирюзовая/лавандовая"]'>
+                                <img src="/assets/images/pages/catalog/key-rings-sleepy-gacha.webp" alt="">
+                                <h3>«Слипи гача»</h3>
+                                <p class="delivery__price">400р.</p>
+                            </div>
+                            <div class="delivery__card"
+                                data-images='["/assets/images/pages/catalog/key-rings-angel-moty.webp"]'
+                                data-title="«Ангел Моти»" data-price="400" data-size="3.5 см" data-count="4"
+                                data-description='["Блестяций акрил звезды", "Голубой карабин"]'>
+                                <img src="/assets/images/pages/catalog/key-rings-angel-moty.webp" alt="">
+                                <h3>«Ангел Моти»</h3>
+                                <p class="delivery__price">400р.</p>
+                            </div>
+                            <button class="last">
+                                ещё 3
+                            </button>
+                        </div>
+                        <div class="delivery__content_bottom">
+                            <div class="delivery__links">
+                                <a href="https://www.cdek.ru/ru/tracking" target="_blank">> отследить на сайте CDEK</a>
+                                <a href="../index.html#faq">? появился вопрос</a>
+                            </div>
+                            <div class="delivery__sum">
+                                <p>итого: <span>3000</span>р.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div data-section="orders" class="orders account__sections">
+                <section class="order">
+                    <div class="order__content account__section-content">
+                        <h2><span>//</span> заказ от <time datetime="2025-02-02">02.02.2025</time></h2>
+
+                        <div class="order__content_top">
+                            <div class="order__adress">
+                                <img src="../assets/images/common/stickers/map.svg" alt="" aria-hidden="true"
+                                    role="presentation" loading="lazy">
+                                <p><span>Москва, ул. Тихомирова, 10</span>
+                                    <span>Пункт выдачи</span>
+                                </p>
+                            </div>
+                            <div class="order__date">
+                                получен <time datetime="2025-02-10"> 10.02.2025</time>
+                            </div>
+                        </div>
+
+                        <div class="order__content_center">
+                            <div class="order__card"
+                                data-images='["/assets/images/pages/catalog/key-rings-angel-marzipan.webp"]'
+                                data-title="«Ангел Марципан»" data-price="400" data-size="3.5 см" data-count="3"
+                                data-description='["Розовый блестящий акрил", "Розовой карабин"]'>
+                                <img src="/assets/images/pages/catalog/key-rings-angel-marzipan.webp" alt="">
+                                <h3 class="long-title">«Ангел Марципан»</h3>
+                                <p class="order__price">400р.</p>
+                            </div>
+                            <div class="order__card"
+                                data-images='["/assets/images/pages/catalog/key-rings-sleepy-gacha.webp", "/assets/images/pages/catalog/key-rings-sleepy-gacha.webp", "/assets/images/pages/catalog/key-rings-sleepy-gacha.webp"]'
+                                data-title="«Слипи гача»" data-price="400" data-size="2.5 см" data-count="2"
+                                data-description='["Двухслойный акрил", "Фурнитура нить белая/бирюзовая/лавандовая"]'>
+                                <img src="/assets/images/pages/catalog/key-rings-sleepy-gacha.webp" alt="">
+                                <h3>«Слипи гача»</h3>
+                                <p class="order__price">400р.</p>
+                            </div>
+                            <div class="order__card"
+                                data-images='["/assets/images/pages/catalog/key-rings-angel-moty.webp"]'
+                                data-title="«Ангел Моти»" data-price="400" data-size="3.5 см" data-count="4"
+                                data-description='["Блестяций акрил звезды", "Голубой карабин"]'>
+                                <img src="/assets/images/pages/catalog/key-rings-angel-moty.webp" alt="">
+                                <h3>«Ангел Моти»</h3>
+                                <p class="order__price">400р.</p>
+                            </div>
+                            <div class="order__card"
+                                data-images='["/assets/images/pages/catalog/key-rings-angel-tofu.webp"]'
+                                data-title="«Ангел Тофу»" data-price="400" data-size="3.5 см" data-count="5"
+                                data-description='["Блестяций акрил крупные звезды", "Бирюзовый карабин"]'>
+                                <img src="/assets/images/pages/catalog/key-rings-angel-tofu.webp" alt="">
+                                <h3>«Ангел Тофу»</h3>
+                                <p class="order__price">400р.</p>
+                            </div>
+                            <div class="order__card"
+                                data-images='["/assets/images/pages/catalog/key-rings-angel-tofu.webp"]'
+                                data-title="«Ангел Тофу»" data-price="400" data-size="3.5 см" data-count="5"
+                                data-description='["Блестяций акрил крупные звезды", "Бирюзовый карабин"]'>
+                                <img src="/assets/images/pages/catalog/key-rings-angel-tofu.webp" alt="">
+                                <h3>«Ангел Тофу»</h3>
+                                <p class="order__price">400р.</p>
+                            </div>
+                            <button class="last">
+                                ещё 3
+                            </button>
+                        </div>
+                        <div class="order__content_bottom">
+                            <div class="order__links">
+                                <a href="../index.html#faq">? появился вопрос</a>
+                            </div>
+                            <div class="order__sum">
+                                <p>итого: <span>3000</span>р.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="order">
+                    <div class="order__content account__section-content">
+                        <h2><span>//</span> заказ от <time datetime="2025-02-02">02.02.2025</time></h2>
+
+                        <div class="order__content_top">
+                            <div class="order__adress">
+                                <img src="../assets/images/common/stickers/map.svg" alt="" aria-hidden="true"
+                                    role="presentation" loading="lazy">
+                                <p><span>Москва, ул. Тихомирова, 10</span>
+                                    <span>Пункт выдачи</span>
+                                </p>
+                            </div>
+                            <div class="order__date">
+                                получен <time datetime="2025-02-10"> 10.02.2025</time>
+                            </div>
+                        </div>
+
+                        <div class="order__content_center">
+                            <div class="order__card"
+                                data-images='["/assets/images/pages/catalog/key-rings-angel-marzipan.webp"]'
+                                data-title="«Ангел Марципан»" data-price="400" data-size="3.5 см" data-count="3"
+                                data-description='["Розовый блестящий акрил", "Розовой карабин"]'>
+                                <img src="/assets/images/pages/catalog/key-rings-angel-marzipan.webp" alt="">
+                                <h3 class="long-title">«Ангел Марципан»</h3>
+                                <p class="order__price">400р.</p>
+                            </div>
+                            <div class="order__card"
+                                data-images='["/assets/images/pages/catalog/key-rings-sleepy-gacha.webp", "/assets/images/pages/catalog/key-rings-sleepy-gacha.webp", "/assets/images/pages/catalog/key-rings-sleepy-gacha.webp"]'
+                                data-title="«Слипи гача»" data-price="400" data-size="2.5 см" data-count="2"
+                                data-description='["Двухслойный акрил", "Фурнитура нить белая/бирюзовая/лавандовая"]'>
+                                <img src="/assets/images/pages/catalog/key-rings-sleepy-gacha.webp" alt="">
+                                <h3>«Слипи гача»</h3>
+                                <p class="order__price">400р.</p>
+                            </div>
+                            <div class="order__card"
+                                data-images='["/assets/images/pages/catalog/key-rings-angel-moty.webp"]'
+                                data-title="«Ангел Моти»" data-price="400" data-size="3.5 см" data-count="4"
+                                data-description='["Блестяций акрил звезды", "Голубой карабин"]'>
+                                <img src="/assets/images/pages/catalog/key-rings-angel-moty.webp" alt="">
+                                <h3>«Ангел Моти»</h3>
+                                <p class="order__price">400р.</p>
+                            </div>
+                            <div class="order__card"
+                                data-images='["/assets/images/pages/catalog/key-rings-angel-tofu.webp"]'
+                                data-title="«Ангел Тофу»" data-price="400" data-size="3.5 см" data-count="5"
+                                data-description='["Блестяций акрил крупные звезды", "Бирюзовый карабин"]'>
+                                <img src="/assets/images/pages/catalog/key-rings-angel-tofu.webp" alt="">
+                                <h3>«Ангел Тофу»</h3>
+                                <p class="order__price">400р.</p>
+                            </div>
+                            <div class="order__card"
+                                data-images='["/assets/images/pages/catalog/key-rings-angel-tofu.webp"]'
+                                data-title="«Ангел Тофу»" data-price="400" data-size="3.5 см" data-count="5"
+                                data-description='["Блестяций акрил крупные звезды", "Бирюзовый карабин"]'>
+                                <img src="/assets/images/pages/catalog/key-rings-angel-tofu.webp" alt="">
+                                <h3>«Ангел Тофу»</h3>
+                                <p class="order__price">400р.</p>
+                            </div>
+                            <div class="order__card"
+                                data-images='["/assets/images/pages/catalog/key-rings-sleepy-gacha.webp", "/assets/images/pages/catalog/key-rings-sleepy-gacha.webp", "/assets/images/pages/catalog/key-rings-sleepy-gacha.webp"]'
+                                data-title="«Слипи гача»" data-price="400" data-size="2.5 см" data-count="2"
+                                data-description='["Двухслойный акрил", "Фурнитура нить белая/бирюзовая/лавандовая"]'>
+                                <img src="/assets/images/pages/catalog/key-rings-sleepy-gacha.webp" alt="">
+                                <h3>«Слипи гача»</h3>
+                                <p class="order__price">400р.</p>
+                            </div>
+                            
+                            <div class="order__card"
+                                data-images='["/assets/images/pages/catalog/key-rings-angel-marzipan.webp"]'
+                                data-title="«Ангел Марципан»" data-price="400" data-size="3.5 см" data-count="3"
+                                data-description='["Розовый блестящий акрил", "Розовой карабин"]'>
+                                <img src="/assets/images/pages/catalog/key-rings-angel-marzipan.webp" alt="">
+                                <h3 class="long-title">«Ангел Марципан»</h3>
+                                <p class="order__price">400р.</p>
+                            </div>
+                            
+                            <button class="last">
+                                ещё 3
+                            </button>
+                        </div>
+                        <div class="order__content_bottom">
+                            <div class="order__links">
+                                <a href="../index.html#faq">? появился вопрос</a>
+                            </div>
+                            <div class="order__sum">
+                                <p>итого: <span>3000</span>р.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div data-section="personal" class="personal account__sections">
+                <section class="personal__content account__section-content">
+                    <h2><span>//</span> здравствуйте, <span class="personal__name">гость</span></h2>
+
+                    <form class="personal__body" id="questionForm" novalidate>
+
+                        <div class="personal__field">
+                            <input class="personal__input" type="text" name="surname" placeholder="фамилия*"
+                                autocomplete="family-name" required></input>
+                            <div class="personal__error personal__error_surname"></div>
+                        </div>
+
+                        <div class="personal__field">
+                            <input class="personal__input" type="text" name="firstname" placeholder="имя*"
+                                autocomplete="given-name" required></input>
+                            <div class="personal__error personal__error_firstname"></div>
+                        </div>
+
+                        <div class="personal__field">
+                            <input class="personal__input" type="text" name="patronymic" placeholder="отчество"
+                                autocomplete="additional-name"></input>
+                            <div class="personal__error personal__error_patronymic"></div>
+                        </div>
+
+                        <div class="personal__field">
+                            <input class="personal__input" type="tel" name="phone" placeholder="телефон*"
+                                autocomplete="tel" required />
+                            <div class="personal__error personal__error_phone"></div>
+                        </div>
+
+                        <div class="personal__field">
+                            <input class="personal__input" type="email" name="email" placeholder="почта*"
+                                autocomplete="email" required />
+                            <div class="personal__error personal__error_email"></div>
+                        </div>
+
+                        <button class="personal__submit" type="submit">сохранить изменения</button>
+                    </form>
+                </section>
+            </div>
+
+            <div data-section="privacy" class="privacy account__sections">
+                <section class="privacy__content account__section-content">
+                    <h2>политика конфиденциальности</h2>
+                    <div class="privacy__text">
+                        <div>
+                            <h3>Общие положения</h3>
+                            <p>Настоящая Политика конфиденциальности определяет цели, порядок и условия обработки
+                                персональных
+                                данных пользователей интернет-магазина "stoboy", который является дочерней компанией ООО
+                                "Футболки Оптом" (ИНН 541234567890). Мы осознаем важность защиты ваших персональных
+                                данных и
+                                принимаем все необходимые меры для их безопасной обработки. Политика применяется к всем
+                                действиям, связанным с обработкой персональных данных на нашем сайте.
+                            </p>
+                            <p>Обработка персональных данных осуществляется в соответствии с требованиями Федерального
+                                закона
+                                Российской Федерации от 27.07.2006 № 152-ФЗ "О персональных данных" и иными нормативными
+                                правовыми актами Российской Федерации.
+                            </p>
+                        </div>
+                        <div>
+                            <h3>Цели обработки персональных данных</h3>
+                            <p>Обработка персональных данных осуществляется с целью предоставления пользователям
+                                следующего
+                                функционала:
+                            </p>
+                            <p>Обработка персональных данных осуществляется в соответствии с требованиями Федерального
+                                закона
+                                Российской Федерации от 27.07.2006 № 152-ФЗ "О персональных данных" и иными нормативными
+                                правовыми актами Российской Федерации.
+                            </p>
+                            <ol>
+                                <li>Регистрация и вход в личный кабинет.</li>
+                                <li>Обработка и отправка заказов пользователям.</li>
+                                <li>Передача данных курьерской компании CDEK для доставки заказов.</li>
+                                <li>Предоставление поддержки пользователям через форму обратной связи на сайте.</li>
+                            </ol>
+                        </div>
+                        <div>
+                            <h3>Собираем данные</h3>
+                            <p>В процессе работы с нашим сайтом мы собираем следующие персональные данные:</p>
+                            <ul>
+                                <li>Фамилия</li>
+                                <li>Имя</li>
+                                <li>Отчество (если имеется)</li>
+                                <li>Адрес электронной почты</li>
+                                <li>Номер телефона</li>
+                                <li>Адрес доставки (включая адреса постомата/ПВЗ)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3>Правовые основания для обработки персональных данных</h3>
+                            <p>Обработка персональных данных осуществляется на следующих правовых основаниях:</p>
+                            <ul>
+                                <li>Согласие пользователя на обработку его персональных данных.
+                                </li>
+                                <li>Необходимость обработки для исполнения договора, стороной которого является субъект
+                                    данных.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3>Передача данных третьим лицам</h3>
+                            <p>Персональные данные пользователей могут быть переданы третьим лицам только в целях,
+                                предусмотренных настоящей Политикой, в частности, курьерской компании CDEK для доставки
+                                товаров.
+                            </p>
+                        </div>
+                        <div>
+                            <h3>Меры по обеспечению безопасности</h3>
+                            <p>Мы принимаем все необходимые организационные и технические меры для защиты персональных
+                                данных от
+                                неправомерного доступа, уничтожения, изменения, блокирования и распространения. Эти меры
+                                включают:
+                            </p>
+                            <ul>
+                                <li>Использование современных технологий защиты данных.</li>
+                                <li>Регулярный контроль за доступом к персональным данным.</li>
+                                <li>Обучение сотрудников по вопросам конфиденциальности и безопасности обработки данных.
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3>Права субъектов данных</h3>
+                            <p>Пользователи имеют право на:
+                            </p>
+                            <ul>
+                                <li>Исправление своих персональных данных.
+                                </li>
+                                <li>Запрос доступа к своим персональным данным для ознакомления с ними.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3>Изменения в политике конфиденциальности</h3>
+                            <p>Мы оставляем за собой право вносить изменения в настоящую Политику. Пользователи не будут
+                                получать уведомления об изменениях, поэтому рекомендуется периодически проверять данный
+                                документ
+                                для получения актуальной информации.
+                            </p>
+                        </div>
+                        <div>
+                            <h3>Контактные данные для вопросов</h3>
+                            <p>Если у вас возникли вопросы по поводу данной Политики, вы можете обратиться к нам по
+                                электронной
+                                почте: stoboy@gmail.com, либо воспользоваться формой обратной связи на нашем сайте.</p>
+                            <p>Настоящая Политика вступает в силу с момента ее опубликования и действует бессрочно, до
+                                ее
+                                замены
+                                новой редакцией.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div data-section="exit" class="exit account__sections">
+                <article class="exit__content account__section-content">
+                    <h2>Желаете выйти из культа котят?</h2>
+                    <div>
+                        <button class="exit__btn exit__btn-no">Неа <img
+                                src="../assets/images/common/stickers/cat-love.svg" alt="love cat"></button>
+                        <a href="../index.html" class="exit__btn exit__btn-yes">Да <img
+                                src="../assets/images/common/stickers/cat-sad.svg" alt="sad cat"></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer__content">
+            <p><span>©</span> 2022 - 2025 stoboy</p>
+            <div class="footer__socials">
+                <a href="https://t.me/stoboyshitpost" target="_blank"><img
+                        src="../assets/images/common/social/telegram.svg" alt="телеграм"></a>
+                <a href="https://vk.com/stoboyart" target="_blank"><img src="../assets/images/common/social/vk.svg"
+                        alt="вконтакте"></a>
+                <a href="https://youtube.com/@stoboyart" target="_blank"><img
+                        src="../assets/images/common/social/youtube.svg" alt="ютуб"></a>
+            </div>
+        </div>
+    </footer>
+    <script src="../js/common.js"></script>
+    <script src="../js/pages/account.js"></script>
+</body>
+
+</html>

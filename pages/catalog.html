@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Каталог авторского мерча stoboy: футболки, аксессуары и креативная канцелярия с авторским дизайном. Выбирай уникальные вещи для самовыражения." />
+
+    <title>Каталог | stoboy</title>
+    <link rel="icon" href="../assets/images/common/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="../styles/css/pages/catalog.css">
+
+</head>
+
+<body>
+    <header class="header">
+        <div class="header__content">
+            <div class="header__logo">
+                <a href="../index.html">
+                    <img class="hidden-desktop" src="../assets/images/common/logo.svg" alt="лого cat-stoboy">
+                    <img class="hidden-mobile" src="../assets/images/common/logo-mob.svg" alt="лого-моб cat-stoboy"
+                        loading="lazy">
+                </a>
+            </div>
+            <nav class="header__nav">
+                <ul>
+                    <li><a href="catalog.html">каталог</a></li>
+                    <li><a href="../index.html#shelves">полочки</a></li>
+                    <li><a href="../index.html#contacts">контакты</a></li>
+                    <li><a href="../index.html#reviews">отзывы</a></li>
+                    <li><a href="../index.html#faq">faq</a></li>
+                </ul>
+            </nav>
+            <div class="header__controls">
+                <a href="account.html">
+                    <img src="../assets/images/ui/account.svg" alt="аккаунт">
+                </a>
+                <a href="cart.html">
+                    <img src="../assets/images/ui/cart.svg" alt="корзина">
+                </a>
+                <button class="header__open hidden-mobile">
+                    <img src="../assets/images/ui/open-menu.svg" alt="меню">
+                </button>
+            </div>
+            <nav class="header__mobile-nav">
+                <ul>
+                    <li><a href="catalog.html">каталог</a></li>
+                    <li><a href="../index.html#shelves">полочки</a></li>
+                    <li><a href="../index.html#contacts">контакты</a></li>
+                    <li><a href="../index.html#reviews">отзывы</a></li>
+                    <li><a href="../index.html#faq">faq</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="menu-overlay"></div>
+
+        <section class="banners">
+            <div class="banners__banner" data-product-id="box1">
+                <img src="../assets/images/pages/catalog/banners/box.webp" alt="бокс">
+                <button>подробнее о боксе</button>
+            </div>
+            <div class="banners__banner" data-product-id="certificate">
+                <img src="../assets/images/pages/catalog/banners/certificate.webp" alt="сертификат">
+                <button>выбрать сертификат</button>
+            </div>
+        </section>
+
+        <div class="filtration">
+            <div class="filtration__button">
+                <button class="filtration__all">
+                    <span class="filtration__circle"></span>
+                    <span class="filtration__label">всё</span>
+                </button>
+            </div>
+            <div class="filtration__buttons">
+                <button class="filtration__key-rings">брелки</button>
+                <button class="filtration__stickers">стикеры</button>
+                <button class="filtration__cards">карточки</button>
+                <button class="filtration__badges">значки</button>
+                <button class="filtration__other">другое</button>
+            </div>
+        </div>
+
+        <div class="products">
+            <section class="products__section products__key-rings">
+                <h2><span>//</span>брелки</h2>
+                <div class="products__cards">
+                    <div class="products__card"
+                        data-images='["../assets/images/pages/catalog/key-rings-sleepy-gacha.webp", "../assets/images/pages/catalog/key-rings-sleepy-gacha.webp", "../assets/images/pages/catalog/key-rings-sleepy-gacha.webp"]'
+                        data-title="«Слипи гача»" data-price="400" data-size="2.5 см" data-count="2"
+                        data-description='["Двухслойный акрил", "Фурнитура нить белая/бирюзовая/лавандовая"]'>
+                        <img src="../assets/images/pages/catalog/key-rings-sleepy-gacha.webp" alt="">
+                        <h3>«Слипи гача»</h3>
+                        <p class="products__price">400р.</p>
+                        <button class="products__btn">в корзинку</button>
+                        <div class="products__counter">
+                            <button class="products__decrease">-</button>
+                            <span class="products__count">1</span>
+                            <button class="products__increase">+</button>
+                        </div>
+                    </div>
+                    <div class="products__card"
+                        data-images='["../assets/images/pages/catalog/key-rings-angel-marzipan.webp"]'
+                        data-title="«Ангел Марципан»" data-price="400" data-size="3.5 см" data-count="3"
+                        data-description='["Розовый блестящий акрил", "Розовой карабин"]'>
+                        <img src="../assets/images/pages/catalog/key-rings-angel-marzipan.webp" alt="">
+                        <h3 class="long-title">«Ангел Марципан»</h3>
+                        <p class="products__price">400р.</p>
+                        <button class="products__btn">в корзинку</button>
+                        <div class="products__counter">
+                            <button class="products__decrease">-</button>
+                            <span class="products__count">1</span>
+                            <button class="products__increase">+</button>
+                        </div>
+                    </div>
+                    <div class="products__card" data-images='["../assets/images/pages/catalog/key-rings-angel-moty.webp"]'
+                        data-title="«Ангел Моти»" data-price="400" data-size="3.5 см" data-count="4"
+                        data-description='["Блестяций акрил звезды", "Голубой карабин"]'>
+                        <img src="../assets/images/pages/catalog/key-rings-angel-moty.webp" alt="">
+                        <h3>«Ангел Моти»</h3>
+                        <p class="products__price">400р.</p>
+                        <button class="products__btn">в корзинку</button>
+                        <div class="products__counter">
+                            <button class="products__decrease">-</button>
+                            <span class="products__count">1</span>
+                            <button class="products__increase">+</button>
+                        </div>
+                    </div>
+                    <div class="products__card" data-images='["../assets/images/pages/catalog/key-rings-angel-tofu.webp"]'
+                        data-title="«Ангел Тофу»" data-price="400" data-size="3.5 см" data-count="5"
+                        data-description='["Блестяций акрил крупные звезды", "Бирюзовый карабин"]'>
+                        <img src="../assets/images/pages/catalog/key-rings-angel-tofu.webp" alt="">
+                        <h3>«Ангел Тофу»</h3>
+                        <p class="products__price">400р.</p>
+                        <button class="products__btn">в корзинку</button>
+                        <div class="products__counter">
+                            <button class="products__decrease">-</button>
+                            <span class="products__count">1</span>
+                            <button class="products__increase">+</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="products__section products__stickers">
+                <h2><span>//</span>стикеры</h2>
+                <div class="products__cards">
+                    <div class="products__card"
+                        data-images='["../assets/images/pages/catalog/key-rings-sleepy-gacha.webp"]' data-title="«Эмодзи»"
+                        data-price="100" data-size="А6" data-count="10" data-description='["Прозрачная пленка"]'>
+                        <img src="../assets/images/pages/catalog/key-rings-sleepy-gacha.webp" alt="">
+                        <h3>«Эмодзи»</h3>
+                        <p class="products__price">100р.</p>
+                        <button class="products__btn">в корзинку</button>
+                        <div class="products__counter">
+                            <button class="products__decrease">-</button>
+                            <span class="products__count">1</span>
+                            <button class="products__increase">+</button>
+                        </div>
+                    </div>
+                    <div class="products__card"
+                        data-images='["../assets/images/pages/catalog/key-rings-angel-marzipan.webp"]'
+                        data-title="«Подушечки»" data-price="100" data-size="А7" data-count="10"
+                        data-description='["Прозрачная пленка"]'>
+                        <img src="../assets/images/pages/catalog/key-rings-angel-marzipan.webp" alt="">
+                        <h3>«Подушечки»</h3>
+                        <p class="products__price">100р.</p>
+                        <button class="products__btn">в корзинку</button>
+                        <div class="products__counter">
+                            <button class="products__decrease">-</button>
+                            <span class="products__count">1</span>
+                            <button class="products__increase">+</button>
+                        </div>
+                    </div>
+                    <div class="products__card" data-images='["../assets/images/pages/catalog/key-rings-angel-moty.webp"]'
+                        data-title="«Сонные»" data-price="100" data-size="А7" data-count="10"
+                        data-description='["Прозрачная пленка"]'>
+                        <img src="../assets/images/pages/catalog/key-rings-angel-moty.webp" alt="">
+                        <h3>«Сонные»</h3>
+                        <p class="products__price">100р.</p>
+                        <button class="products__btn">в корзинку</button>
+                        <div class="products__counter">
+                            <button class="products__decrease">-</button>
+                            <span class="products__count">1</span>
+                            <button class="products__increase">+</button>
+                        </div>
+                    </div>
+                    <div class="products__card" data-images='["../assets/images/pages/catalog/key-rings-angel-tofu.webp"]'
+                        data-title="«Микростикеры»" data-price="100" data-size="А6" data-count="10"
+                        data-description='["Прозрачная пленка"]'>
+                        <img src="../assets/images/pages/catalog/key-rings-angel-tofu.webp" alt="">
+                        <h3>«Микростикеры»</h3>
+                        <p class="products__price">100р.</p>
+                        <button class="products__btn">в корзинку</button>
+                        <div class="products__counter">
+                            <button class="products__decrease">-</button>
+                            <span class="products__count">1</span>
+                            <button class="products__increase">+</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="products__section products__cards">
+                <h2><span>//</span>карточки</h2>
+                <div class="products__cards">
+                    <div class="products__card"
+                        data-images='["../assets/images/pages/catalog/key-rings-sleepy-gacha.webp", "../assets/images/pages/catalog/key-rings-sleepy-gacha.webp", "../assets/images/pages/catalog/key-rings-sleepy-gacha.webp"]'
+                        data-title="«Слипи гача»" data-price="400" data-size="2.5 см" data-count="2"
+                        data-description='["Двухслойный акрил", "Фурнитура нить белая/бирюзовая/лавандовая"]'>
+                        <img src="../assets/images/pages/catalog/key-rings-sleepy-gacha.webp" alt="">
+                        <h3>«Слипи гача»</h3>
+                        <p class="products__price">400р.</p>
+                        <button class="products__btn">в корзинку</button>
+                        <div class="products__counter">
+                            <button class="products__decrease">-</button>
+                            <span class="products__count">1</span>
+                            <button class="products__increase">+</button>
+                        </div>
+                    </div>
+                    <div class="products__card"
+                        data-images='["../assets/images/pages/catalog/key-rings-angel-marzipan.webp"]'
+                        data-title="«Ангел Марципан»" data-price="400" data-size="3.5 см" data-count="3"
+                        data-description='["Розовый блестящий акрил", "Розовой карабин"]'>
+                        <img src="../assets/images/pages/catalog/key-rings-angel-marzipan.webp" alt="">
+                        <h3 class="long-title">«Ангел Марципан»</h3>
+                        <p class="products__price">400р.</p>
+                        <button class="products__btn">в корзинку</button>
+                        <div class="products__counter">
+                            <button class="products__decrease">-</button>
+                            <span class="products__count">1</span>
+                            <button class="products__increase">+</button>
+                        </div>
+                    </div>
+                    <div class="products__card" data-images='["../assets/images/pages/catalog/key-rings-angel-moty.webp"]'
+                        data-title="«Ангел Моти»" data-price="400" data-size="3.5 см" data-count="4"
+                        data-description='["Блестяций акрил звезды", "Голубой карабин"]'>
+                        <img src="../assets/images/pages/catalog/key-rings-angel-moty.webp" alt="">
+                        <h3>«Ангел Моти»</h3>
+                        <p class="products__price">400р.</p>
+                        <button class="products__btn">в корзинку</button>
+                        <div class="products__counter">
+                            <button class="products__decrease">-</button>
+                            <span class="products__count">1</span>
+                            <button class="products__increase">+</button>
+                        </div>
+                    </div>
+                    <div class="products__card" data-images='["../assets/images/pages/catalog/key-rings-angel-tofu.webp"]'
+                        data-title="«Ангел Тофу»" data-price="400" data-size="3.5 см" data-count="5"
+                        data-description='["Блестяций акрил крупные звезды", "Бирюзовый карабин"]'>
+                        <img src="../assets/images/pages/catalog/key-rings-angel-tofu.webp" alt="">
+                        <h3>«Ангел Тофу»</h3>
+                        <p class="products__price">400р.</p>
+                        <button class="products__btn">в корзинку</button>
+                        <div class="products__counter">
+                            <button class="products__decrease">-</button>
+                            <span class="products__count">1</span>
+                            <button class="products__increase">+</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="products__section products__badges">
+                <h2><span>//</span>значки</h2>
+                <div class="products__cards">
+                    <div class="products__card"
+                        data-images='["../assets/images/pages/catalog/key-rings-sleepy-gacha.webp", "../assets/images/pages/catalog/key-rings-sleepy-gacha.webp", "../assets/images/pages/catalog/key-rings-sleepy-gacha.webp"]'
+                        data-title="«Слипи гача»" data-price="400" data-size="2.5 см" data-count="2"
+                        data-description='["Двухслойный акрил", "Фурнитура нить белая/бирюзовая/лавандовая"]'>
+                        <img src="../assets/images/pages/catalog/key-rings-sleepy-gacha.webp" alt="">
+                        <h3>«Слипи гача»</h3>
+                        <p class="products__price">400р.</p>
+                        <button class="products__btn">в корзинку</button>
+                        <div class="products__counter">
+                            <button class="products__decrease">-</button>
+                            <span class="products__count">1</span>
+                            <button class="products__increase">+</button>
+                        </div>
+                    </div>
+                    <div class="products__card"
+                        data-images='["../assets/images/pages/catalog/key-rings-angel-marzipan.webp"]'
+                        data-title="«Ангел Марципан»" data-price="400" data-size="3.5 см" data-count="3"
+                        data-description='["Розовый блестящий акрил", "Розовой карабин"]'>
+                        <img src="../assets/images/pages/catalog/key-rings-angel-marzipan.webp" alt="">
+                        <h3 class="long-title">«Ангел Марципан»</h3>
+                        <p class="products__price">400р.</p>
+                        <button class="products__btn">в корзинку</button>
+                        <div class="products__counter">
+                            <button class="products__decrease">-</button>
+                            <span class="products__count">1</span>
+                            <button class="products__increase">+</button>
+                        </div>
+                    </div>
+                    <div class="products__card" data-images='["../assets/images/pages/catalog/key-rings-angel-moty.webp"]'
+                        data-title="«Ангел Моти»" data-price="400" data-size="3.5 см" data-count="4"
+                        data-description='["Блестяций акрил звезды", "Голубой карабин"]'>
+                        <img src="../assets/images/pages/catalog/key-rings-angel-moty.webp" alt="">
+                        <h3>«Ангел Моти»</h3>
+                        <p class="products__price">400р.</p>
+                        <button class="products__btn">в корзинку</button>
+                        <div class="products__counter">
+                            <button class="products__decrease">-</button>
+                            <span class="products__count">1</span>
+                            <button class="products__increase">+</button>
+                        </div>
+                    </div>
+                    <div class="products__card" data-images='["../assets/images/pages/catalog/key-rings-angel-tofu.webp"]'
+                        data-title="«Ангел Тофу»" data-price="400" data-size="3.5 см" data-count="5"
+                        data-description='["Блестяций акрил крупные звезды", "Бирюзовый карабин"]'>
+                        <img src="../assets/images/pages/catalog/key-rings-angel-tofu.webp" alt="">
+                        <h3>«Ангел Тофу»</h3>
+                        <p class="products__price">400р.</p>
+                        <button class="products__btn">в корзинку</button>
+                        <div class="products__counter">
+                            <button class="products__decrease">-</button>
+                            <span class="products__count">1</span>
+                            <button class="products__increase">+</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="products__section products__other">
+                <h2><span>//</span>другое</h2>
+                <div class="products__cards">
+                    <div class="products__card" data-product-id="certificate"
+                        data-images='["../assets/images/pages/catalog/other-certificate.webp"]'
+                        data-title="подарочный сертификат" data-price="" data-size="A7" data-count="30"
+                        data-description='["Рандомно в розовом и голубом цвете"]'>
+                        <img src="../assets/images/pages/catalog/other-certificate.webp" alt="сертификат">
+                        <h3 class="multiline">Подарочный сертификат</h3>
+                        <p class="products__price">--</p>
+                        <button class="products__btn">в корзинку</button>
+                        <div class="products__counter">
+                            <button class="products__decrease">-</button>
+                            <span class="products__count">1</span>
+                            <button class="products__increase">+</button>
+                        </div>
+                    </div>
+                    <div class="products__card" data-product-id="box1"
+                        data-images='["../assets/images/pages/catalog/other-box.webp"]'
+                        data-title="BOX «peache & stoboy»" data-price="2500" data-size="20см * 30см" data-count="10"
+                        data-description='["Фигурка Марципана", "Значок в форме сердца", "Пак стикеров и карточка"]'>
+                        <img src="../assets/images/pages/catalog/other-box.webp" alt="бокс">
+                        <h3>BOX</h3>
+                        <p class="products__price">2500р.</p>
+                        <button class="products__btn">в корзинку</button>
+                        <div class="products__counter">
+                            <button class="products__decrease">-</button>
+                            <span class="products__count">1</span>
+                            <button class="products__increase">+</button>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div id="productsModal">
+        <div class="modal">
+            <div class="modal__content">
+                <button class="modal__close"><img src="../assets/images/ui/close.svg" alt="close"></button>
+                <div id="modalImages" class="modal__images"></div>
+                <div class="modal__details">
+                    <div class="modal__title">
+                        <h2 id="modalTitle"></h2>
+                        <p id="modalTitleDupl"></p>
+                    </div>
+                    <div>
+                        <span id="modalPrice"></span>
+                    </div>
+                    <div class="modal__btns">
+                        <div class="modal__controls">
+                            <div class="modal__counter">
+                                <button class="modal__decrease">-</button>
+                                <span class="modal__count">1</span>
+                                <button class="modal__increase">+</button>
+                            </div>
+                            <a href="/pages/cart.html">перейти в корзину</a>
+                        </div>
+
+                        <button class="modal__add-cart">положить в корзинку</button>
+                    </div>
+                    <div class="modal__more-info">
+                        <p id="modalSize"></p>
+                        <ul id="modalDescription"></ul>
+                        <p class="modal__note">*цвета на фото могут отличаться от реальных из-за освещения или настроек
+                            экрана</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="footer">
+        <div class="footer__content">
+            <p><span>©</span> 2022 - 2025 stoboy</p>
+            <div class="footer__socials">
+                <a href="https://t.me/stoboyshitpost" target="_blank"><img
+                        src="../assets/images/common/social/telegram.svg" alt="телеграм"></a>
+                <a href="https://vk.com/stoboyart" target="_blank"><img src="../assets/images/common/social/vk.svg"
+                        alt="вконтакте"></a>
+                <a href="https://youtube.com/@stoboyart" target="_blank"><img
+                        src="../assets/images/common/social/youtube.svg" alt="ютуб"></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/common.js"></script>
+    <script src="../js/pages/catalog.js"></script>
+</body>
+
+</html>

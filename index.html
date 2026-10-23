@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Stoboy — интернет-магазин авторского мерча с уникальными иллюстрациями. Узнай больше о бренде, прочитай отзывы и найди эксклюзивные товары с душой." />
+
+    <title>stoboy</title>
+    <link rel="icon" href="assets/images/common/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="styles/css/index.css">
+
+</head>
+
+<body>
+    <header class="header">
+        <div class="header__content">
+            <div class="header__logo">
+                <a href="index.html">
+                    <img class="hidden-desktop" src="assets/images/common/logo.svg" alt="лого cat-stoboy">
+                    <img class="hidden-mobile" src="assets/images/common/logo-mob.svg" alt="лого-моб cat-stoboy"
+                        loading="lazy">
+                </a>
+            </div>
+            <nav class="header__nav">
+                <ul>
+                    <li><a href="pages/catalog.html">каталог</a></li>
+                    <li><a href="#shelves">полочки</a></li>
+                    <li><a href="#contacts">контакты</a></li>
+                    <li><a href="#reviews">отзывы</a></li>
+                    <li><a href="#faq">faq</a></li>
+                </ul>
+            </nav>
+            <div class="header__controls">
+                <a href="pages/account.html">
+                    <img src="assets/images/ui/account.svg" alt="аккаунт">
+                </a>
+                <a href="pages/cart.html">
+                    <img src="assets/images/ui/cart.svg" alt="корзина">
+                </a>
+                <button class="header__open hidden-mobile">
+                    <img src="assets/images/ui/open-menu.svg" alt="меню">
+                </button>
+            </div>
+            <nav class="header__mobile-nav">
+                <ul>
+                    <li><a href="pages/catalog.html">каталог</a></li>
+                    <li><a href="#shelves">полочки</a></li>
+                    <li><a href="#contacts">контакты</a></li>
+                    <li><a href="#reviews">отзывы</a></li>
+                    <li><a href="#faq">faq</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="menu-overlay"></div>
+        <!-- ПРОМО -->
+        <section class="promo">
+            <div class="promo__content">
+
+                <div class="promo__top">
+                    <div class="promo__logo">
+                        <div>
+                            <p>stoboy</p>
+                            <p>stoboy</p>
+                        </div>
+                    </div>
+                    <div class="promo__title">
+                        <h1>мерч <span>и</span> котята</h1>
+                        <p>мерч <span>и</span> котята</p>
+                    </div>
+                </div>
+
+                <div class="promo__bottom">
+                    <div class="promo__left">
+                        <div class="promo__list-bg">
+                            <div class="promo__list-text">
+                                <ul>
+                                    <li><img src="assets/images/common/stickers/letter.svg" alt="письмо">открытки</li>
+                                    <li><img src="assets/images/common/stickers/cat-hearts.svg"
+                                            alt="кот с сердечками">значки
+                                    </li>
+                                    <li><img src="assets/images/common/stickers/heart-paw.svg"
+                                            alt="лапка в сердце">постеры
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li><img src="assets/images/common/stickers/cat-glasses.svg"
+                                            alt="кот в очках">стикеры</li>
+                                    <li><img src="assets/images/common/stickers/cake.svg" alt="торт">брелки</li>
+                                    <li><img src="assets/images/common/stickers/cat-flower.svg"
+                                            alt="кот с цветочком">стенды
+                                    </li>
+                                </ul>
+                            </div>
+                            <p>и многое другое</p>
+                            <a href="pages/catalog.html">перейти в каталог</a>
+
+                        </div>
+                    </div>
+
+                    <div class="promo__right">
+                        <div class="promo__gallery">
+                            <img class="hidden-desktop" src="assets/images/index/promo/gallery.webp" alt=""
+                                aria-hidden="true" role="presentation" loading="lazy">
+                            <img class="hidden-mobile" src="assets/images/index/promo/gallery-medium.webp" alt=""
+                                aria-hidden="true" role="presentation" loading="lazy">
+                        </div>
+                        <div class="promo__socials">
+                            <a href="https://t.me/stoboyshitpost" target="_blank"><img
+                                    src="assets/images/common/social/telegram.svg" alt="телеграм"></a>
+                            <a href="https://vk.com/stoboyart" target="_blank"><img
+                                    src="assets/images/common/social/vk.svg" alt="вконтакте"></a>
+                            <a href="https://youtube.com/@stoboyart" target="_blank"><img
+                                    src="assets/images/common/social/youtube.svg" alt="ютуб"></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ГАЛЕРЕЯ -->
+        <section class="gallery">
+            <h2><span>//</span>галерея</h2>
+
+            <div class="gallery__slider">
+
+                <button class="gallery__arrows gallery__arrows_left">
+                    <img class="hidden-desktop" src="assets/images/ui/arrow-left.svg" alt="левая стрелка">
+                    <img class="hidden-mobile" src="assets/images/ui/arrow-left-medium.svg" alt="левая стрелка">
+                </button>
+
+                <div class="gallery__slideshow">
+                    <div class="gallery__slides">
+                        <!-- клон -->
+                        <div class="gallery__slide gallery__slide-3">
+                            <img class="gallery__slide-img" src="assets/images/index/gallery/slide-3.webp"
+                                alt="клон третьего слайда">
+                            <button class="gallery__btn">выбрать сертификат</button>
+                        </div>
+                        <!-- настоящий контент -->
+                        <div class="gallery__slide">
+                            <img class="gallery__slide-img" src="assets/images/index/gallery/slide-1.webp"
+                                alt="первый слайд">
+                        </div>
+                        <div class="gallery__slide gallery__slide-2">
+                            <img class="gallery__slide-img" src="assets/images/index/gallery/slide-2.webp"
+                                alt="второй слайд">
+                            <div>
+                                <a href="#card">
+                                    <img src="assets/images/index/gallery/cards.webp" alt="карточки">
+                                    <span>карточки</span>
+                                </a>
+                                <a href="#box">
+                                    <img src="assets/images/index/gallery/box.webp" alt="бокс">
+                                    <span>бокс</span>
+                                </a>
+                                <a href="#trinkets">
+                                    <img src="assets/images/index/gallery/trinkets.webp" alt="брелочки">
+                                    <span>брелочки</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="gallery__slide gallery__slide-3">
+                            <img class="gallery__slide-img" src="assets/images/index/gallery/slide-3.webp"
+                                alt="третий слайд">
+                            <button class="gallery__btn">выбрать сертификат</button>
+                        </div>
+                        <!-- клон -->
+                        <div class="gallery__slide">
+                            <img class="gallery__slide-img" src="assets/images/index/gallery/slide-1.webp"
+                                alt="клон первого слайда">
+                        </div>
+                    </div>
+                </div>
+
+                <button class="gallery__arrows gallery__arrows_right">
+                    <img class="hidden-desktop" src="assets/images/ui/arrow-right.svg" alt="правая стрелка">
+                    <img class="hidden-mobile" src="assets/images/ui/arrow-right-medium.svg" alt="правая стрелка">
+                </button>
+            </div>
+
+            <div class="gallery__controls">
+                <button class="gallery__control gallery__control_active"></button>
+                <button class="gallery__control"></button>
+                <button class="gallery__control"></button>
+            </div>
+        </section>
+
+        <!-- ОБО МНЕ -->
+        <section class="about">
+            <div class="about__title">
+                <div>
+                    <h2><span>//</span>обо мне</h2>
+                    <p><span>//</span>обо мне</p>
+                </div>
+            </div>
+            <div class="about__hello">
+                <p>познакомимся? <img src="assets/images/common/stickers/hi-cat.svg" alt="" aria-hidden="true"
+                        role="presentation" loading="lazy"> я – лада стобой!</p>
+                <p>познакомимся? <img src="assets/images/common/stickers/hi-cat.svg" alt="" aria-hidden="true"
+                        role="presentation" loading="lazy"> я – лада стобой!</p>
+            </div>
+            <div class="about__content">
+                <div class="about__info">
+                    <div class="about__card">
+                        <div class="about__card-title">stoboy <img src="assets/images/common/stickers/cat-love.svg"
+                                alt="" aria-hidden="true" role="presentation" loading="lazy"></div>
+                        <div class="about__list">
+                            <ul>
+                                <li>мне 22 года</li>
+                                <li>рисую котёнков и милые штучки</li>
+                                <li>продаю свой мерч</li>
+                                <li>учусь во вшэ на иллюстрации</li>
+                                <li>бью татуировки хендпоком -> <a href="https://m.vk.com/topic-221210507_49437095"
+                                        target="_blank">ВК</a></li>
+                                <li>появляюсь на маркетах в москве (и иногда в спб)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="about__socials">
+                        <div class="about__link">
+                            <p>все самое важное -</p>
+                            <a href="https://m.vk.com/topic-221210507_49437095" target="_blank"><img
+                                    src="assets/images/common/social/vk.svg" alt="вконтакте"></a>
+                        </div>
+                        <div class="about__link">
+                            <p>больше про мою жизнь -</p>
+                            <a href="https://t.me/stoboyshitpost/997" target="_blank"><img
+                                    src="assets/images/common/social/telegram.svg" alt="телеграм"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about__gallery">
+                    <img src="assets/images/index/about/stoboy.webp" alt="фотография художницы">
+                </div>
+            </div>
+        </section>
+
+        <!-- ПОЛОЧКИ -->
+        <section class="shelves" id="shelves">
+            <div class="shelves__content">
+                <h2><span>//</span>полочки</h2>
+
+                <div class="shelves__locations">
+                    <h3 class="shelves__subtitle">Полочки, где есть мои котята:</h3>
+
+                    <ul class="shelves__list">
+                        <li>
+                            <img src="assets/images/common/stickers/map.svg" alt="" aria-hidden="true"
+                                role="presentation" loading="lazy">
+                            <div>
+                                <p>МОСКВА — <a href="https://vk.com/polkachudesmoscow"
+                                        target="_blank">vk.com/polkachudesmoscow</a></p>
+                                <p>Нижняя Сыромятническая улица, 10 с8 (артплей)</p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <img src="assets/images/common/stickers/map.svg" alt="" aria-hidden="true"
+                                role="presentation" loading="lazy">
+                            <div>
+                                <p>САНКТ-ПЕТЕРБУРГ — <a href="https://vk.com/polkachudespiter"
+                                        target="_blank">vk.com/polkachudespiter</a></p>
+                                <p>Лиговский проспект, 74Д</p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <img src="assets/images/common/stickers/map.svg" alt="" aria-hidden="true"
+                                role="presentation" loading="lazy">
+                            <div>
+                                <p>ЕКАТЕРИНБУРГ — <a href="https://vk.com/polkachudesekb"
+                                        target="_blank">vk.com/polkachudesekb</a></p>
+                                <p>Вайнера, 8 / проспект Ленина, 24</p>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <p class="shelves__note">*Полка Чудес — это сеть магазинов с авторским мерчем от самых разных
+                        мастеров и художников</p>
+                </div>
+                <div class="shelves__decoration-strawberry">
+                    <img src="assets/images/common/stickers/strawberry.svg" alt="" aria-hidden="true"
+                        role="presentation" loading="lazy">
+                </div>
+            </div>
+
+            <div class="shelves__decorations">
+                <img src="assets/images/index/shelves-decorations.webp" alt="" aria-hidden="true" role="presentation"
+                    loading="lazy">
+            </div>
+        </section>
+
+        <!-- БЕГУЩАЯ СТРОКА -->
+        <div class="marquee">
+            <div class="marquee__wrapper">
+                <div class="marquee__content">
+                    <img src="assets/images/index/marquee/first-7-stickers.svg" alt="" aria-hidden="true"
+                        role="presentation" loading="lazy">
+                    <img class="marquee__stoboy" src="assets/images/index/marquee/stoboy.svg" alt="" aria-hidden="true"
+                        role="presentation" loading="lazy">
+                    <img src="assets/images/index/marquee/second-7-stickers.svg" alt="" aria-hidden="true"
+                        role="presentation" loading="lazy">
+                    <img class="marquee__stoboy" src="assets/images/index/marquee/stoboy.svg" alt="" aria-hidden="true"
+                        role="presentation" loading="lazy">
+                    <!-- Дубликат для бесконечной прокрутки -->
+                    <div class="marquee__content" aria-hidden="true">
+                        <img src="assets/images/index/marquee/first-7-stickers.svg" alt="" loading="lazy">
+                        <img class="marquee__stoboy" src="assets/images/index/marquee/stoboy.svg" alt="" loading="lazy">
+                        <img src="assets/images/index/marquee/second-7-stickers.svg" alt="" loading="lazy">
+                        <img class="marquee__stoboy" src="assets/images/index/marquee/stoboy.svg" alt="" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- КОНТАКТЫ -->
+        <section class="contacts" id="contacts">
+            <h2><span>//</span>контакты</h2>
+            <div class="contacts__content">
+                <div class="contacts__decoration-img">
+                    <img class="hidden-desktop" src="assets/images/index/contacts/decorations.webp"
+                        alt="присоединяйся к культу котят">
+                    <img class="hidden-mobile" src="assets/images/index/contacts/decorations-mobile.webp"
+                        alt="присоединяйся к культу котят">
+                </div>
+
+                <div class="contacts__qr-codes">
+                    <div class="contacts__qr-code">
+                        <a class="hidden-desktop" href="https://vk.com/stoboyart" target="_blank"><img
+                                src="assets/images/index/contacts/qr-code-vk.webp" alt="QR код вконтакте"></a>
+                        <a class="hidden-mobile" href="https://t.me/stoboyshitpost" target="_blank">
+                            <img src="assets/images/common/social/vk-mobile.svg" alt="Иконка вконтакте">
+                        </a>
+                        <a href="https://vk.com/stoboyart" target="_blank">vk.com/stoboyart</a>
+                    </div>
+                    <div class="contacts__qr-code">
+                        <a class="hidden-desktop" href="https://t.me/stoboyshitpost" target="_blank"><img
+                                src="assets/images/index/contacts/qr-code-tg.webp" alt="QR код телеграм"></a>
+                        <a class="hidden-mobile" href="https://t.me/stoboyshitpost" target="_blank">
+                            <img src="assets/images/common/social/telegram-mobile.svg" alt="Иконка телеграма">
+                        </a>
+                        <a href="https://t.me/stoboyshitpost" target="_blank">t.me/stoboyshitpost</a>
+                    </div>
+
+                    <div class="contacts__map-icons">
+                        <img src="assets/images/common/stickers/map.svg" alt="" aria-hidden="true" role="presentation"
+                            loading="lazy">
+                        <img src="assets/images/common/stickers/map.svg" alt="" aria-hidden="true" role="presentation"
+                            loading="lazy">
+                    </div>
+                </div>
+
+                <div class="contacts__decoration-flower">
+                    <img src="assets/images/common/stickers/twisted-flower.svg" alt="" aria-hidden="true"
+                        role="presentation" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <!-- ОТЗЫВЫ -->
+        <section class="reviews" id="reviews">
+            <h2><span>//</span>отзывы</h2>
+            <div class="reviews__block">
+                <div class="reviews__review">
+                    <p class="reviews__text">Я люблю авторский мерч, но всё равно очень избирательна в вопросах
+                        стилистики, и никогда ещё не было такого, чтобы я заказывала что-то, что ещё не изготовили и
+                        не проверили. 🥹 Но тут другой случай Просто любовь с первого взгляда, как только увидела,
+                        то сразу пошла в личку, чтобы сделать заказ. Кроме стенда я взяла ещё два значка и два
+                        стикера, всё просто супер милое и качественное 😭😭💕 Всем советую, и друзьям и мами и
+                        папи Спасибо Ладушке за создание такой красоты!!! 🤧
+                    </p>
+                    <button class="reviews__toggle">прочитать полностью<span> ></span></button>
+                    <div class="reviews__photos">
+                        <img src="assets/images/index/reviews/review-1-1.webp" alt="покупка: стендик котенка">
+                        <img src="assets/images/index/reviews/review-1-2.webp" alt="стикеры, значки и стендик">
+                    </div>
+
+                </div>
+
+                <div class="reviews__review">
+                    <p class="reviews__text">бесконечно разглядываю карточки-открыточки, лапаю их (они очень
+                        приятные на ощупь!!) значки матовые – все как я люблю!! (глянец не нравицццаа), брелочек
+                        просто прелесть, малюсенький, тоже люблю крохотульки. Свечи – это отдельный кайф. Без шуток,
+                        эти ароматы в свечах ручной работы я встретила впервые. Сейчас, к сожалению, у большинства
+                        мастеров отдушки одинаковые, словно из одного места и уже надоели :( А ТУТ ОНИ ПРОСТО
+                        БЕСПОДОБНЫЕ, обязательно понюхайте все, если есть возможность!!!! А еще в самой большой
+                        свечке намешаны блёсточки 🪷 Когда свечка горит, аромат распространяется по комнате очень
+                        быстро и еще долго дает о себе знать в помещении. Очень счастлива, что на вас наткнулась!!!
+                        (гляньте, как значки и брелочек идеально вписались на шоппер!!)
+
+                        теперь планирую сделать у вас свою первую татуировку 🥹
+                    </p>
+                    <button class="reviews__toggle">прочитать полностью<span> ></span></button>
+                    <div class="reviews__photos">
+                        <img src="assets/images/index/reviews/review-2-1.webp" alt="стикерпак и карточки">
+                        <img src="assets/images/index/reviews/review-2-2.webp" alt="свечка">
+                        <img src="assets/images/index/reviews/review-2-3.webp" alt="свечка">
+                        <img src="assets/images/index/reviews/review-2-4.webp" alt="свечка">
+                    </div>
+                </div>
+
+                <div class="reviews__review">
+                    <p class="reviews__text">Очень давно хотела приобрести товары данного автора, наконец то удалось
+                        попасть на онлайн заказ 🛍, к сожалению часть товара не было но возможно если получится
+                        дойду до полки или в следующие онлайн заказы купить получится 🤞
+                        Все пришло в целости, товары очень милые, в восторге от стиля автора , не удержалась и уже
+                        сделала заготовки для текста в блокноте как только получила заказ 🥰
+                        Качество очень классное всех товаров, продавец всегда был на связи все своевременно ,
+                        бесконечно звезд из 10 ⭐😁😊
+                    </p>
+                    <button class="reviews__toggle">прочитать полностью<span> ></span></button>
+                    <div class="reviews__photos">
+                        <img src="assets/images/index/reviews/review-3-1.webp" alt="брелочки">
+                        <img src="assets/images/index/reviews/review-3-2.webp" alt="брелочки">
+                        <img src="assets/images/index/reviews/review-3-3.webp" alt="стикерпаки">
+                        <img src="assets/images/index/reviews/review-3-4.webp" alt="стикеры">
+                    </div>
+                </div>
+
+                <div class="reviews__review">
+                    <p class="reviews__text">в безумном восторге от полученной посылочки!!! прилетела просто со
+                        скорость света видимо ⚡
+                        вживую все смотрится еще более сахарно и карамельно! теперь немного жалею, что взяла не так
+                        много, но зато оставила на другие разы 👅 и спасибо за новое гражданство! ❤‍🩹
+                    </p>
+                    <button class="reviews__toggle">прочитать полностью<span> ></span></button>
+                    <div class="reviews__photos">
+                        <img src="assets/images/index/reviews/review-4-1.webp"
+                            alt="покупка: стикеры, обложка и карточка">
+                        <img src="assets/images/index/reviews/review-4-2.webp" alt="обложка на паспорт">
+                    </div>
+                </div>
+            </div>
+            <div class="reviews__socials">
+                <p>посмотреть больше отзывов -</p>
+                <div>
+                    <a href="https://t.me/stoboyshitpost/997" target="_blank"><img
+                            src="assets/images/common/social/telegram.svg" alt="телеграм"></a>
+                    <a href="https://m.vk.com/topic-221210507_49437095" target="_blank"><img
+                            src="assets/images/common/social/vk.svg" alt="вконтакте"></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="faq" id="faq">
+            <h2><span>//</span>faq</h2>
+            <div class="faq__decorations">
+                <img src="assets/images/common/stickers/faq-decorations.svg" alt="" aria-hidden="true"
+                    role="presentation" loading="lazy">
+            </div>
+            <div class="faq__list">
+                <div class="faq__item">
+                    <div class="faq__header">
+                        <p>где можно приобрести мерч оффлайн?</p>
+                        <button><img src="assets/images/ui/faq-btn.svg" alt="стрелка"></button>
+                    </div>
+                    <div class="faq__body">
+                        <p>Мерч можно найти на "полочках" — адреса и города собраны в <a href="#shelves">блоке выше</a>,
+                            там же есть ссылки на сообщества ВКонтакте, где удобно следить за наличием в Вашем городе.
+                        </p>
+                        <p>Также котят можно встретить на арт-маркетах в Москве И Санкт-Петербурге, там Вы сможете
+                            купить всё лично, полистать, потрогать, посмотреть вживую и пообщаться. Анонсы таких событий
+                            мы публикуем в <a href="https://t.me/stoboyshitpost" target="_blank">Telegram</a> и <a
+                                href="https://m.vk.com/topic-221210507_54051997" target="_blank">ВКонтакте</a> — заглядывайте, чтобы
+                            быть в курсе.</p>
+                    </div>
+                </div>
+
+                <div class="faq__item">
+                    <div class="faq__header">
+                        <p>как работает доставка?</p>
+                        <button><img src="assets/images/ui/faq-btn.svg" alt="стрелка"></button>
+                    </div>
+                    <div class="faq__body">
+                        <p>После успешной оплаты Вашего заказа мы оформляем и отправляем посылку в течении нескольких
+                            рабочих дней после оплаты (закладываем от 4 до 7 рабочих дней в зависимости от нагрузки).
+                            Дальнейшие сроки доставки зависят от пункта назначения.</p>
+                        <p>Ориентировочные дни отправки заказов Пн/Ср/Пт*. Новые заказы поступившие в день отправки не
+                            отправляются в этот же день - они принимаются в сборку до следующего ближайшего дня отправки
+                            для полной комплектации заказа.</p>
+                        <p>*дни могут меняться в зависимости от количества заказов и праздничных дней</p>
+                    </div>
+                </div>
+
+                <div class="faq__item">
+                    <div class="faq__header">
+                        <p>сколько ждать мой заказ?</p>
+                        <button><img src="assets/images/ui/faq-btn.svg" alt="стрелка"></button>
+                    </div>
+                    <div class="faq__body">
+                        <p>Узнать примерные сроки можно при оформлении заказа, добавив адрес доставки.</p>
+                        <p>Точную информацию о передвижениях посылки следует уточнять у сервиса выбранной Вами доставки
+                            <a href="https://www.cdek.ru/ru/tracking/">(CDEK)</a> по выданному Вам номеру отслеживания,
+                            который можно увидеть в Личном кабинете в разделе "доставки".
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq__item">
+                    <div class="faq__header">
+                        <p>возможно ли осуществить возврат?</p>
+                        <button><img src="assets/images/ui/faq-btn.svg" alt="стрелка"></button>
+                    </div>
+                    <div class="faq__body">
+                        <p>Если вы получили товар с браком или не те позиции, то в таких случаях возможен возврат
+                            средств или повторная отправка нужного товара за наш счёт.</p>
+                        <p>Пожалуйста, заполните форму ниже на сайте: укажите свои контакты и в поле для вопроса
+                            напишите, что именно произошло. Мы свяжемся с вами в ближайшее время, уточним детали и
+                            предложим решение.</p>
+                        <p>Мы несём ответственность за такие ситуации и стараемся устранять их быстро и без лишних
+                            сложностей для вас.</p>
+                    </div>
+                </div>
+
+                <div class="faq__item">
+                    <div class="faq__header">
+                        <p>как узнать, где мой заказ?</p>
+                        <button><img src="assets/images/ui/faq-btn.svg" alt="стрелка"></button>
+                    </div>
+                    <div class="faq__body">
+                        <p>После оформления и отправки заказа вы получите трек-номер — он доступен в вашем Личном
+                            кабинете, в разделе «Доставка». С его помощью вы можете отследить заказ на <a
+                                href="https://www.cdek.ru/ru/tracking/">сайте службы доставки CDEK</a>.</p>
+                        <p>Если трек-номер не работает или у вас нет к нему доступа — напишите нам через форму ниже.
+                            Обязательно укажите ваше ФИО или номер заказа, чтобы мы могли быстро найти информацию и
+                            помочь.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ФОРМА -->
+        <section class="form" id="question">
+            <div class="form__decorations">
+                <img src="assets/images/index/form-decoration.webp" alt="" aria-hidden="true" role="presentation"
+                    loading="lazy" />
+            </div>
+
+            <div class="form__container">
+                <h2 class="form__title">оставить вопрос</h2>
+                <form class="form__body" id="questionForm" novalidate>
+                    <div class="form__field">
+                        <input type="email" class="form__input" name="email" placeholder="почта" autocomplete="email" />
+                        <div class="form__error form__error_email"></div>
+                    </div>
+
+                    <span class="form__or">или</span>
+
+                    <div class="form__field">
+                        <input type="tel" class="form__input" name="phone" placeholder="телефон" autocomplete="tel" />
+                        <div class="form__error form__error_phone"></div>
+                    </div>
+
+                    <div class="form__field">
+                        <textarea class="form__textarea" name="question" placeholder="ваш вопрос" rows="4"
+                            autocomplete="on"></textarea>
+                        <div class="form__error form__error_last form__error_question"></div>
+                    </div>
+
+                    <button type="submit" class="form__submit">отправить</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+
+    <footer class="footer">
+        <div class="footer__content">
+            <p><span>©</span> 2022 - 2025 stoboy</p>
+            <div class="footer__socials">
+                <a href="https://t.me/stoboyshitpost" target="_blank"><img
+                        src="assets/images/common/social/telegram.svg" alt="телеграм"></a>
+                <a href="https://vk.com/stoboyart" target="_blank"><img src="assets/images/common/social/vk.svg"
+                        alt="вконтакте"></a>
+                <a href="https://youtube.com/@stoboyart" target="_blank"><img
+                        src="assets/images/common/social/youtube.svg" alt="ютуб"></a>
+            </div>
+        </div>
+    </footer>
+    <script src="js/common.js"></script>
+    <script src="js/index.js"></script>
+</body>
+
+</html>

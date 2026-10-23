@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Личный кабинет | stoboy</title>
+    <link rel="icon" href="../assets/images/common/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="../styles/css/pages/log-reg.css">
+
+</head>
+
+<body>
+    <header class="header">
+        <div class="header__content">
+            <div class="header__logo">
+                <a href="../index.html">
+                    <img class="hidden-desktop" src="../assets/images/common/logo.svg" alt="лого cat-stoboy">
+                    <img class="hidden-mobile" src="../assets/images/common/logo-mob.svg" alt="лого-моб cat-stoboy"
+                        loading="lazy">
+                </a>
+            </div>
+            <nav class="header__nav">
+                <ul>
+                    <li><a href="catalog.html">каталог</a></li>
+                    <li><a href="../index.html#shelves">полочки</a></li>
+                    <li><a href="../index.html#contacts">контакты</a></li>
+                    <li><a href="../index.html#reviews">отзывы</a></li>
+                    <li><a href="../index.html#faq">faq</a></li>
+                </ul>
+            </nav>
+            <div class="header__controls">
+                <a href="account.html">
+                    <img src="../assets/images/ui/account.svg" alt="аккаунт">
+                </a>
+                <a href="cart.html">
+                    <img src="../assets/images/ui/cart.svg" alt="корзина">
+                </a>
+                <button class="header__open hidden-mobile">
+                    <img src="../assets/images/ui/open-menu.svg" alt="меню">
+                </button>
+            </div>
+            <nav class="header__mobile-nav">
+                <ul>
+                    <li><a href="catalog.html">каталог</a></li>
+                    <li><a href="../index.html#shelves">полочки</a></li>
+                    <li><a href="../index.html#contacts">контакты</a></li>
+                    <li><a href="../index.html#reviews">отзывы</a></li>
+                    <li><a href="../index.html#faq">faq</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="menu-overlay"></div>
+        <div class="form">
+            <div class="form__content account__section-content">
+                <div class="form__controls">
+                    <button class="form__control form__control_login">вход</button>
+                    <button class="form__control form__control_register active">регистрация</button>
+                </div>
+
+                <form class="form__body" id="authForm" novalidate>
+
+                    <div class="form__field form__field_name">
+                        <input class="form__input" type="text" name="firstname" placeholder="имя"
+                            autocomplete="given-name" required></input>
+                        <div class="form__error form__error_firstname"></div>
+                    </div>
+
+                    <div class="form__field">
+                        <input class="form__input" type="tel" name="phone" placeholder="телефон" autocomplete="tel"
+                            required />
+                        <div class="form__error form__error_phone"></div>
+                    </div>
+
+                    <span class="form__or">или</span>
+
+                    <div class="form__field">
+                        <input class="form__input" type="email" name="email" placeholder="почта"
+                            autocomplete="email" required />
+                        <div class="form__error form__error_email"></div>
+                    </div>
+
+                    <div class="form__field">
+                        <input class="form__input" type="password" name="password" placeholder="пароль"
+                            autocomplete="new-password" required />
+                        <div class="form__error form__error_password"></div>
+                    </div>
+
+                    <button class="form__submit" type="submit">зарегистрироваться</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer__content">
+            <p><span>©</span> 2022 - 2025 stoboy</p>
+            <div class="footer__socials">
+                <a href="https://t.me/stoboyshitpost" target="_blank"><img
+                        src="../assets/images/common/social/telegram.svg" alt="телеграм"></a>
+                <a href="https://vk.com/stoboyart" target="_blank"><img src="../assets/images/common/social/vk.svg"
+                        alt="вконтакте"></a>
+                <a href="https://youtube.com/@stoboyart" target="_blank"><img
+                        src="../assets/images/common/social/youtube.svg" alt="ютуб"></a>
+            </div>
+        </div>
+    </footer>
+    <script src="../js/common.js"></script>
+    <script src="../js/pages/log-reg.js"></script>
+</body>
+
+</html>
