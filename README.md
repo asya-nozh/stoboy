@@ -1,3 +1,6 @@
+<img width="2845" height="1419" alt="image" src="https://github.com/user-attachments/assets/f69b3b3f-1d44-4158-88a8-2e402a8fd5ce" />
+
+
 # Stoboy — интернет-магазин авторского мерча
 
 Учебный проект интернет-магазина авторского мерча с авторскими иллюстрациями, аксессуарами и канцелярией.
@@ -13,6 +16,9 @@ Stoboy — веб-интерфейс интернет-магазина, орие
 - Корзина
 - Вход и регистрация
 - Личный кабинет
+
+<img width="2537" height="1715" alt="image" src="https://github.com/user-attachments/assets/a88d9223-0ba7-4ddf-92db-f67be3480823" />
+
 
 ## Технологии
 
