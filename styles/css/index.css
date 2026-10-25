@@ -24,15 +24,15 @@ a {
 
 @font-face {
   font-family: "Comfortaa";
-  src: url("/assets/fonts/Comfortaa.woff2") format("woff2");
+  src: url("../../assets/fonts/Comfortaa.woff2") format("woff2");
 }
 @font-face {
   font-family: "Jua";
-  src: url("/assets/fonts/Jua-Regular.woff2") format("woff2");
+  src: url("../../assets/fonts/Jua-Regular.woff2") format("woff2");
 }
 @font-face {
   font-family: "MV-crooker";
-  src: url("/assets/fonts/MV-crooker.woff2") format("woff2");
+  src: url("../../assets/fonts/MV-crooker.woff2") format("woff2");
 }
 * {
   cursor: default;
