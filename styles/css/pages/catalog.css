@@ -1998,6 +1998,21 @@ main {
   opacity: 0.65;
   cursor: not-allowed;
 }
+.products__card {
+  max-height: none;
+  min-height: 430px;
+}
+.products__card .products__price {
+  padding-bottom: 8px;
+}
+.products__card .products__stock {
+  margin: 0;
+  padding: 0 14px 12px;
+}
+.products__card .products__btn,
+.products__card .products__counter {
+  margin-top: auto;
+}
 .products__increase:disabled,
 .modal__increase:disabled {
   opacity: 0.45;
