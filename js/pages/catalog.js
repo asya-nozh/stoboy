@@ -1,333 +1,164 @@
-document.querySelectorAll('.products__card').forEach(card => {
-    const btn = card.querySelector('.products__btn');
+'use strict';
+
+document.addEventListener('DOMContentLoaded', () => {
+  const store = window.StoboyStore;
+  const cards = Array.from(document.querySelectorAll('.products__card'));
+  const modal = document.getElementById('productsModal');
+  const html = document.documentElement;
+  const body = document.body;
+
+  cards.forEach((card, index) => {
+    const productId = store.productIds[index];
+    const product = store.getProduct(productId);
+    if (!product) return;
+    card.dataset.productId = productId;
+    card.dataset.price = String(product.price);
+    card.dataset.count = String(product.stock);
+    card.dataset.title = product.title;
+    card.dataset.size = product.size;
+    card.dataset.description = JSON.stringify(product.description);
+    card.dataset.images = JSON.stringify([store.asset(product.image)]);
+    const title = card.querySelector('h3');
+    const price = card.querySelector('.products__price');
+    if (title) title.textContent = product.title;
+    if (price) price.textContent = store.formatMoney(product.price);
+    ensureStockLabel(card);
+    bindCard(card);
+    syncCard(card);
+  });
+
+  function ensureStockLabel(card) {
+    let label = card.querySelector('.products__stock');
+    if (!label) {
+      label = document.createElement('p');
+      label.className = 'products__stock';
+      card.querySelector('.products__price')?.after(label);
+    }
+    return label;
+  }
+
+  function cartQuantity(productId) {
+    return store.getCart().find(item => item.productId === productId)?.quantity || 0;
+  }
+
+  function syncCard(card) {
+    const product = store.getProduct(card.dataset.productId);
+    if (!product) return;
+    const quantity = cartQuantity(product.id);
+    const addButton = card.querySelector('.products__btn');
     const counter = card.querySelector('.products__counter');
-    const decreaseBtn = card.querySelector('.products__decrease');
-    const increaseBtn = card.querySelector('.products__increase');
-    const countSpan = card.querySelector('.products__count');
+    const count = card.querySelector('.products__count');
+    const increase = card.querySelector('.products__increase');
+    const stockLabel = ensureStockLabel(card);
+    card.classList.toggle('products__card_sold-out', product.stock === 0);
+    stockLabel.textContent = product.stock === 0 ? 'раскупили' : `в наличии: ${product.stock}`;
+    stockLabel.classList.toggle('products__stock_sold-out', product.stock === 0);
+    addButton.disabled = product.stock === 0;
+    addButton.textContent = product.stock === 0 ? 'раскупили' : 'в корзинку';
+    addButton.classList.toggle('hidden', quantity > 0);
+    counter.classList.toggle('active', quantity > 0);
+    if (count) count.textContent = String(quantity || 1);
+    if (increase) increase.disabled = quantity >= product.stock;
+  }
 
-    // Берём лимит из data-count, если нет — ставим 5 по умолчанию
-    const MAX_COUNT = parseInt(card.getAttribute('data-count')) || 5;
-
-    btn.addEventListener('click', () => {
-        btn.classList.add('hidden');
-        counter.classList.add('active');
-        countSpan.textContent = '1';
-        updateIncreaseBtn();
+  function bindCard(card) {
+    const addButton = card.querySelector('.products__btn');
+    const decrease = card.querySelector('.products__decrease');
+    const increase = card.querySelector('.products__increase');
+    addButton.addEventListener('click', event => {
+      event.stopPropagation();
+      const product = store.getProduct(card.dataset.productId);
+      if (product?.stock > 0) store.setCartQuantity(product.id, 1);
+      syncCard(card);
     });
-
-    decreaseBtn.addEventListener('click', () => {
-        let count = parseInt(countSpan.textContent, 10);
-        if (count > 1) {
-            count--;
-            countSpan.textContent = count;
-            updateIncreaseBtn();
-        } else {
-            counter.classList.remove('active');
-            btn.classList.remove('hidden');
-        }
+    decrease.addEventListener('click', event => {
+      event.stopPropagation();
+      store.setCartQuantity(card.dataset.productId, cartQuantity(card.dataset.productId) - 1);
+      syncCard(card);
     });
-
-    increaseBtn.addEventListener('click', () => {
-        let count = parseInt(countSpan.textContent, 10);
-        if (count < MAX_COUNT) {
-            count++;
-            countSpan.textContent = count;
-            updateIncreaseBtn();
-        }
+    increase.addEventListener('click', event => {
+      event.stopPropagation();
+      store.setCartQuantity(card.dataset.productId, cartQuantity(card.dataset.productId) + 1);
+      syncCard(card);
     });
-
-    function updateIncreaseBtn() {
-        let count = parseInt(countSpan.textContent, 10);
-        if (count >= MAX_COUNT) {
-            increaseBtn.style.opacity = '0.5';
-            increaseBtn.style.pointerEvents = 'none';
-        } else {
-            increaseBtn.style.opacity = '1';
-            increaseBtn.style.pointerEvents = 'auto';
-        }
-    }
-});
-
-
-
-
-
-
-const allBtn = document.querySelector('.filtration__all');
-const buttons = document.querySelectorAll('.filtration__buttons button');
-const sections = document.querySelectorAll('.products__section');
-
-function showSections(activeClasses) {
-    // Если activeClasses пустой или содержит 'all' — показываем все
-    if (activeClasses.length === 0 || activeClasses.includes('all')) {
-        sections.forEach(section => {
-            section.style.display = '';
-        });
-    } else {
-        sections.forEach(section => {
-            // Проверяем, есть ли у секции класс из активных кнопок
-            const show = activeClasses.some(cls => section.classList.contains(`products__${cls}`));
-            section.style.display = show ? '' : 'none';
-        });
-    }
-}
-
-function updateUI() {
-    const activeBtns = [...buttons].filter(b => b.classList.contains('active'));
-    const activeClasses = activeBtns.map(btn => {
-        // У кнопок классы типа filtration__key-rings, берем часть после filtration__
-        const cls = [...btn.classList].find(c => c.startsWith('filtration__'));
-        return cls ? cls.replace('filtration__', '') : '';
+    card.addEventListener('click', event => {
+      if (!event.target.closest('button')) openProductModal(card.dataset.productId);
     });
+  }
 
-    // Обновляем кнопки "всё"
-    const anyActive = activeBtns.length > 0;
-    if (anyActive) {
-        allBtn.classList.add('inactive');
-        allBtn.classList.remove('active');
-    } else {
-        allBtn.classList.remove('inactive');
-        allBtn.classList.add('active');
+  function openProductModal(productId) {
+    const product = store.getProduct(productId);
+    if (!product || !modal) return;
+    document.getElementById('modalTitle').textContent = product.title;
+    document.getElementById('modalTitleDupl').textContent = product.title;
+    document.getElementById('modalPrice').textContent = store.formatMoney(product.price);
+    document.getElementById('modalSize').textContent = `Размер: ${product.size}`;
+    document.getElementById('modalDescription').innerHTML = product.description.map(item => `<li>${item}</li>`).join('');
+    document.getElementById('modalImages').innerHTML = `<div class="modal__images-wrapper"><img class="modal__main-image" src="${store.asset(product.image)}" alt="${product.title}"></div>`;
+    const controls = modal.querySelector('.modal__controls');
+    const addButton = modal.querySelector('.modal__add-cart');
+    const count = modal.querySelector('.modal__count');
+    const decrease = modal.querySelector('.modal__decrease');
+    const increase = modal.querySelector('.modal__increase');
+
+    function syncModal() {
+      const freshProduct = store.getProduct(productId);
+      const quantity = cartQuantity(productId);
+      count.textContent = String(quantity || 1);
+      controls.classList.toggle('active', quantity > 0);
+      addButton.classList.toggle('hidden', quantity > 0);
+      addButton.disabled = freshProduct.stock === 0;
+      addButton.textContent = freshProduct.stock === 0 ? 'раскупили' : 'положить в корзинку';
+      decrease.disabled = quantity <= 0;
+      increase.disabled = quantity >= freshProduct.stock;
+      const card = cards.find(item => item.dataset.productId === productId);
+      if (card) syncCard(card);
     }
 
-    // Если все кнопки активны — сбрасываем и активируем "всё"
-    if (activeClasses.length === buttons.length) {
-        buttons.forEach(b => b.classList.remove('active'));
-        allBtn.classList.remove('inactive');
-        allBtn.classList.add('active');
-        showSections(['all']);
-    } else {
-        showSections(activeClasses);
-    }
-}
-
-allBtn.addEventListener('click', () => {
-    buttons.forEach(b => b.classList.remove('active'));
-    allBtn.classList.remove('inactive');
-    allBtn.classList.add('active');
-    showSections(['all']);
-});
-
-buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-        if (btn.classList.contains('active')) {
-            btn.classList.remove('active');
-        } else {
-            btn.classList.add('active');
-        }
-        updateUI();
-    });
-});
-
-// Инициализация при загрузке страницы
-updateUI();
-
-
-
-
-
-
-
-const html = document.documentElement;
-const body = document.body;
-
-// Функция для проверки видимости элемента
-function isVisible(el) {
-    return el && window.getComputedStyle(el).display !== 'none' && window.getComputedStyle(el).visibility !== 'hidden' && el.offsetParent !== null;
-}
-
-// Вынесем логику открытия модалки в отдельную функцию,
-// чтобы можно было открыть модалку как по клику на карточку, так и по кнопке баннера
-function openProductModal(card) {
-    const modal = document.getElementById('productsModal');
-    const title = card.dataset.title;
-    const price = card.dataset.price;
-    const size = card.dataset.size;
-    const description = JSON.parse(card.dataset.description);
-    const images = JSON.parse(card.dataset.images);
-    const maxCount = parseInt(card.dataset.count) || 1;
-
-    const addBtn = card.querySelector('.products__btn');
-    const counter = card.querySelector('.products__counter');
-    const counterCountSpan = counter.querySelector('.products__count');
-    const currentCount = parseInt(counterCountSpan.textContent) || 1;
-
-    // Заполняем данные модалки
-    document.getElementById('modalTitle').textContent = title;
-    document.getElementById('modalTitleDupl').textContent = title;
-    document.getElementById('modalPrice').textContent = price + 'р.';
-    document.getElementById('modalSize').textContent = 'Размер: ' + size;
-
-    const descList = document.getElementById('modalDescription');
-    descList.innerHTML = '';
-    description.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = item;
-        descList.appendChild(li);
-    });
-
-    const imagesContainer = document.getElementById('modalImages');
-    imagesContainer.innerHTML = '';
-
-    const wrapper = document.createElement('div');
-    wrapper.classList.add('modal__images-wrapper');
-
-    const mainImage = document.createElement('img');
-    mainImage.className = 'modal__main-image';
-    mainImage.src = images[0] || '';
-    wrapper.appendChild(mainImage);
-
-    const thumbs = document.createElement('div');
-    thumbs.classList.add('modal__thumbs');
-
-    images.slice(0, 3).forEach((src, index) => {
-        const thumb = document.createElement('img');
-        thumb.src = src;
-        if (index === 0) thumb.classList.add('active');
-
-        thumb.addEventListener('click', () => {
-            mainImage.src = src;
-            thumbs.querySelectorAll('img').forEach(img => img.classList.remove('active'));
-            thumb.classList.add('active');
-        });
-
-        thumbs.appendChild(thumb);
-    });
-
-    wrapper.appendChild(thumbs);
-    imagesContainer.appendChild(wrapper);
-
-    const modalControls = modal.querySelector('.modal__controls');
-    const modalAddCartBtn = modal.querySelector('.modal__add-cart');
-    const modalCountSpan = modal.querySelector('.modal__count');
-    const modalDecreaseBtn = modal.querySelector('.modal__decrease');
-    const modalIncreaseBtn = modal.querySelector('.modal__increase');
-
-    function updateModalButtons(count) {
-        modalCountSpan.textContent = count;
-        modalDecreaseBtn.disabled = count <= 0;
-        modalIncreaseBtn.disabled = count >= maxCount;
-    }
-
-    if (isVisible(addBtn)) {
-        // Кнопка видна — показываем её, прячем счётчик в модалке
-        modalControls.classList.remove('active');
-        modalAddCartBtn.classList.remove('hidden');
-        modalCountSpan.textContent = '1';
-    } else if (isVisible(counter)) {
-        // Счётчик виден — показываем счётчик в модалке с текущим значением
-        modalControls.classList.add('active');
-        modalAddCartBtn.classList.add('hidden');
-        modalCountSpan.textContent = currentCount;
-
-        updateModalButtons(currentCount);
-
-        modalDecreaseBtn.onclick = () => {
-            let count = parseInt(modalCountSpan.textContent);
-            if (count > 0) {
-                count--;
-                updateModalButtons(count);
-                modalCountSpan.textContent = count;
-                counterCountSpan.textContent = count;
-
-                if (count === 0) {
-                    modalControls.classList.remove('active');
-                    modalAddCartBtn.classList.remove('hidden');
-
-                    // В карточке тоже меняем вид обратно
-                    addBtn.style.display = '';
-                    counter.style.display = 'none';
-                }
-            }
-        };
-
-        modalIncreaseBtn.onclick = () => {
-            let count = parseInt(modalCountSpan.textContent);
-            if (count < maxCount) {
-                count++;
-                updateModalButtons(count);
-                modalCountSpan.textContent = count;
-                counterCountSpan.textContent = count;
-
-                if (count > 0) {
-                    modalControls.classList.add('active');
-                    modalAddCartBtn.classList.add('hidden');
-
-                    addBtn.style.display = 'none';
-                    counter.style.display = 'flex';
-                }
-            }
-        };
-    } else {
-        modalControls.classList.remove('active');
-        modalAddCartBtn.classList.remove('hidden');
-        modalCountSpan.textContent = '1';
-    }
-
-    // Клик по кнопке "положить в корзинку" в модалке
-    modalAddCartBtn.onclick = () => {
-        modalAddCartBtn.classList.add('hidden');
-        modalControls.classList.add('active');
-        modalCountSpan.textContent = '1';
-
-        // Обновляем карточку: скрываем кнопку, показываем счетчик с 1
-        addBtn.style.display = 'none';
-        counter.style.display = 'flex';
-        counterCountSpan.textContent = '1';
-    };
-
+    addButton.onclick = () => { store.setCartQuantity(productId, 1); syncModal(); };
+    decrease.onclick = () => { store.setCartQuantity(productId, cartQuantity(productId) - 1); syncModal(); };
+    increase.onclick = () => { store.setCartQuantity(productId, cartQuantity(productId) + 1); syncModal(); };
+    syncModal();
     modal.style.display = 'flex';
     html.classList.add('modal-open');
     body.classList.add('modal-open');
-}
+  }
 
-// Обработчик клика на карточки (оставляем почти как есть, просто вызываем функцию)
-document.querySelectorAll('.products__card').forEach(card => {
-    card.addEventListener('click', (e) => {
-        if (
-            !e.target.closest('.products__btn') &&
-            !e.target.closest('.products__counter')
-        ) {
-            openProductModal(card);
-        }
-    });
-});
-
-// Добавляем обработчики для кнопок на баннерах
-document.querySelectorAll('.banners__banner').forEach(banner => {
-    const btn = banner.querySelector('button');
-    if (!btn) return;
-    btn.addEventListener('click', () => {
-        const productId = banner.dataset.productId;
-        if (!productId) return;
-
-        const card = document.querySelector(`.products__card[data-product-id="${productId}"]`);
-        if (card) {
-            openProductModal(card);
-        }
-    });
-});
-
-document.querySelector('.modal__close').addEventListener('click', () => {
-    document.getElementById('productsModal').style.display = 'none';
-    html.classList.remove('modal-open');
-    body.classList.remove('modal-open');
-});
-
-document.getElementById('productsModal').addEventListener('click', e => {
-    if (e.target === e.currentTarget) {
-        e.currentTarget.style.display = 'none';
-        html.classList.remove('modal-open');
-        body.classList.remove('modal-open');
-    }
-});
-
-window.addEventListener('DOMContentLoaded', () => {
-    const modal = document.getElementById('productsModal');
+  function closeModal() {
+    if (!modal) return;
     modal.style.display = 'none';
     html.classList.remove('modal-open');
     body.classList.remove('modal-open');
+  }
+
+  modal?.querySelector('.modal__close')?.addEventListener('click', closeModal);
+  modal?.addEventListener('click', event => { if (event.target === modal) closeModal(); });
+  closeModal();
+  document.querySelectorAll('.banners__banner').forEach(banner => {
+    banner.querySelector('button')?.addEventListener('click', () => openProductModal(banner.dataset.productId));
+  });
+
+  const allButton = document.querySelector('.filtration__all');
+  const filterButtons = Array.from(document.querySelectorAll('.filtration__buttons button'));
+  const sections = Array.from(document.querySelectorAll('.products__section'));
+  function updateFilters() {
+    const active = filterButtons.filter(button => button.classList.contains('active')).map(button =>
+      Array.from(button.classList).find(name => name.startsWith('filtration__'))?.replace('filtration__', '')
+    );
+    const showAll = active.length === 0;
+    allButton.classList.toggle('active', showAll);
+    allButton.classList.toggle('inactive', !showAll);
+    sections.forEach(section => {
+      section.style.display = showAll || active.some(name => section.classList.contains(`products__${name}`)) ? '' : 'none';
+    });
+  }
+  allButton.addEventListener('click', () => {
+    filterButtons.forEach(button => button.classList.remove('active'));
+    updateFilters();
+  });
+  filterButtons.forEach(button => button.addEventListener('click', () => {
+    button.classList.toggle('active');
+    updateFilters();
+  }));
+  updateFilters();
 });
-
-
-

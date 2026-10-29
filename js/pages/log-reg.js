@@ -1,171 +1,99 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const form = document.getElementById("authForm");
+'use strict';
 
-    const loginBtn = document.querySelector('.form__control_login');
-    const registerBtn = document.querySelector('.form__control_register');
-    const nameField = document.querySelector('.form__field_name');
-    const orText = document.querySelector('.form__or');
-    const submitBtn = document.querySelector('.form__submit');
+document.addEventListener('DOMContentLoaded', () => {
+  const store = window.StoboyStore;
+  const form = document.getElementById('authForm');
+  const loginButton = document.querySelector('.form__control_login');
+  const registerButton = document.querySelector('.form__control_register');
+  const nameField = document.querySelector('.form__field_name');
+  const orText = document.querySelector('.form__or');
+  const submitButton = document.querySelector('.form__submit');
+  const firstname = form.elements.firstname;
+  const phone = form.elements.phone;
+  const email = form.elements.email;
+  const password = form.elements.password;
+  const errors = {
+    firstname: document.querySelector('.form__error_firstname'),
+    phone: document.querySelector('.form__error_phone'),
+    email: document.querySelector('.form__error_email'),
+    password: document.querySelector('.form__error_password')
+  };
+  let registerMode = true;
 
-    const firstnameInput = form.querySelector('input[name="firstname"]');
-    const phoneInput = form.querySelector('input[name="phone"]');
-    const emailInput = form.querySelector('input[name="email"]');
-    const passwordInput = form.querySelector('input[name="password"]');
+  const demo = document.createElement('div');
+  demo.className = 'auth-demo';
+  demo.innerHTML = '<strong>Демо-вход:</strong><br>demo@stoboy.ru<br>пароль: demo123';
+  form.after(demo);
 
-    const firstnameError = form.querySelector(".form__error_firstname");
-    const phoneError = form.querySelector(".form__error_phone");
-    const emailError = form.querySelector(".form__error_email");
-    const passwordError = form.querySelector(".form__error_password");
+  function clearErrors() {
+    Object.values(errors).forEach(element => { element.textContent = ''; });
+    Array.from(form.elements).forEach(element => element.classList?.remove('invalid'));
+  }
 
-    // Статус: true — регистрация, false — вход
-    let isRegister = true;
+  function setMode(isRegister) {
+    registerMode = isRegister;
+    clearErrors();
+    form.reset();
+    registerButton.classList.toggle('active', isRegister);
+    loginButton.classList.toggle('active', !isRegister);
+    nameField.classList.toggle('hidden', !isRegister);
+    orText.classList.toggle('active', !isRegister);
+    submitButton.textContent = isRegister ? 'зарегистрироваться' : 'войти';
+    password.autocomplete = isRegister ? 'new-password' : 'current-password';
+    demo.hidden = isRegister;
+  }
 
-    function toggleFormMode(registerMode) {
-        isRegister = registerMode;
+  loginButton.addEventListener('click', () => setMode(false));
+  registerButton.addEventListener('click', () => setMode(true));
 
-        // Сброс ошибок и выделений
-        [firstnameError, phoneError, emailError, passwordError].forEach(el => el.textContent = "");
-        [firstnameInput, phoneInput, emailInput, passwordInput].forEach(input => input.classList.remove("invalid"));
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    clearErrors();
+    let invalid = false;
+    const nameValue = firstname.value.trim();
+    const phoneValue = phone.value.trim();
+    const emailValue = email.value.trim().toLowerCase();
+    const passwordValue = password.value;
+    const phoneDigits = phoneValue.replace(/\D/g, '');
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-        // (по желанию) очистка всех полей:
-        form.reset();
-
-        if (isRegister) {
-            registerBtn.classList.add('active');
-            loginBtn.classList.remove('active');
-            nameField.classList.remove('hidden');
-            orText.classList.remove('active');
-            submitBtn.textContent = 'зарегистрироваться';
-            passwordInput.setAttribute('autocomplete', 'new-password');
-        } else {
-            loginBtn.classList.add('active');
-            registerBtn.classList.remove('active');
-            nameField.classList.add('hidden');
-            orText.classList.add('active');
-            submitBtn.textContent = 'войти';
-            passwordInput.setAttribute('autocomplete', 'current-password');
-        }
+    function showError(field, message) {
+      errors[field].textContent = message;
+      form.elements[field].classList.add('invalid');
+      invalid = true;
     }
 
+    if (registerMode && !/^[а-яА-ЯёЁa-zA-Z-]{2,50}$/.test(nameValue)) showError('firstname', 'Введите корректное имя');
+    if (registerMode && phoneDigits.length !== 11) showError('phone', 'Введите телефон из 11 цифр');
+    if (!registerMode && !phoneValue && !emailValue) {
+      showError('phone', 'Введите телефон или почту');
+      showError('email', 'Введите телефон или почту');
+    }
+    if (emailValue && !emailPattern.test(emailValue)) showError('email', 'Неверный формат почты');
+    if (registerMode && !emailValue) showError('email', 'Введите почту');
+    if (passwordValue.length < 6) showError('password', 'Пароль должен содержать минимум 6 символов');
+    if (invalid) return;
 
-    loginBtn.addEventListener('click', e => {
-        e.preventDefault();
-        toggleFormMode(false);
-    });
+    try {
+      if (registerMode) {
+        const normalizedName = nameValue.charAt(0).toUpperCase() + nameValue.slice(1).toLowerCase();
+        store.register({ firstname: normalizedName, phone: phoneValue, email: emailValue, password: passwordValue });
+      } else {
+        store.login({ phone: phoneValue, email: emailValue, password: passwordValue });
+      }
+      window.location.href = 'account.html';
+    } catch (authError) {
+      errors.password.textContent = authError.message;
+      password.classList.add('invalid');
+    }
+  });
 
-    registerBtn.addEventListener('click', e => {
-        e.preventDefault();
-        toggleFormMode(true);
-    });
-
-    form.addEventListener("submit", (e) => {
-        e.preventDefault();
-
-        // Сброс ошибок и стилей
-        [firstnameError, phoneError, emailError, passwordError].forEach(el => el.textContent = "");
-        [firstnameInput, phoneInput, emailInput, passwordInput].forEach(input => input.classList.remove("invalid"));
-
-        let hasError = false;
-        const validateName = (value) => /^[а-яА-ЯёЁa-zA-Z-]{2,50}$/.test(value.trim());
-        const capitalize = (str) => str.trim().charAt(0).toUpperCase() + str.trim().slice(1).toLowerCase();
-
-        if (isRegister) {
-            // Регистрация — проверяем имя
-            let firstname = firstnameInput.value;
-            if (firstname.trim() === "") {
-                firstnameError.textContent = "❗ введите имя";
-                firstnameInput.classList.add("invalid");
-                hasError = true;
-            } else if (!validateName(firstname)) {
-                firstnameError.textContent = "❗ введите корректное имя";
-                firstnameInput.classList.add("invalid");
-                hasError = true;
-            } else {
-                firstname = capitalize(firstname);
-                firstnameInput.value = firstname;
-            }
-        }
-
-        // --- Только при входе: одно из полей обязательно (телефон или почта)
-        if (!isRegister) {
-            const phoneEmpty = phoneInput.value.trim() === "";
-            const emailEmpty = emailInput.value.trim() === "";
-
-            if (phoneEmpty && emailEmpty) {
-                phoneError.textContent = "📞 введите телефон или почту";
-                phoneInput.classList.add("invalid");
-                emailError.textContent = "💌 введите телефон или почту";
-                emailInput.classList.add("invalid");
-                hasError = true;
-            }
-        }
-
-        // --- Телефон
-        const phoneValue = phoneInput.value.trim();
-        const phonePattern = /^[\d\s()+-]+$/;
-        const digitCount = (phoneValue.match(/\d/g) || []).length;
-
-        if (isRegister || phoneValue !== "") {
-            if (phoneValue === "") {
-                if (isRegister) {
-                    phoneError.textContent = "📞 введите телефон";
-                    phoneInput.classList.add("invalid");
-                    hasError = true;
-                }
-            } else if (!phonePattern.test(phoneValue)) {
-                phoneError.textContent = "📞 недопустимые символы";
-                phoneInput.classList.add("invalid");
-                hasError = true;
-            } else if (digitCount !== 11) {
-                phoneError.textContent = "📞 некорректная длина номера";
-                phoneInput.classList.add("invalid");
-                hasError = true;
-            }
-        }
-
-        // --- Email
-        const emailValue = emailInput.value.trim();
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-        if (isRegister || emailValue !== "") {
-            if (emailValue === "") {
-                if (isRegister) {
-                    emailError.textContent = "💌 введите почту";
-                    emailInput.classList.add("invalid");
-                    hasError = true;
-                }
-            } else if (!emailPattern.test(emailValue)) {
-                emailError.textContent = "💌 неверный формат";
-                emailInput.classList.add("invalid");
-                hasError = true;
-            }
-        }
-
-
-
-        // Пароль — общий, минимальная длина 6
-        const passwordValue = passwordInput.value;
-        if (passwordValue === "") {
-            passwordError.textContent = "🔒 введите пароль";
-            passwordInput.classList.add("invalid");
-            hasError = true;
-        } else if (passwordValue.length < 6) {
-            passwordError.textContent = "🔒 минимум 6 символов";
-            passwordInput.classList.add("invalid");
-            hasError = true;
-        }
-
-        if (!hasError) {
-            if (isRegister) {
-                alert("✅ Вы зарегистрировались");
-            } else {
-                alert("✅ Вы вошли в систему");
-            }
-            form.reset();
-            toggleFormMode(isRegister); // сбросить к текущему виду, чтобы имя опять появилось/спряталось
-        }
-    });
-
-    // Инициализация формы на регистрацию
-    toggleFormMode(true);
+  const currentUser = store.getCurrentUser();
+  if (currentUser) {
+    const notice = document.createElement('p');
+    notice.className = 'auth-current-user';
+    notice.innerHTML = `Вы уже вошли как ${currentUser.firstname}. <a href="account.html">Перейти в аккаунт</a>`;
+    form.before(notice);
+  }
+  setMode(true);
 });

@@ -1,0 +1,25 @@
+.header__controls a[href*="cart.html"] {
+  position: relative;
+}
+
+.header__cart-badge {
+  position: absolute;
+  top: -9px;
+  right: -10px;
+  min-width: 19px;
+  height: 19px;
+  box-sizing: border-box;
+  padding: 2px 5px;
+  border: 2px solid #fff;
+  border-radius: 999px;
+  color: #fff;
+  background: #df737b;
+  font-family: "Comfortaa", sans-serif;
+  font-size: 10px;
+  line-height: 11px;
+  text-align: center;
+}
+
+[hidden] {
+  display: none !important;
+}

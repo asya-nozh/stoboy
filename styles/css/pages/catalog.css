@@ -1978,3 +1978,28 @@ main {
   }
 }
 /*# sourceMappingURL=catalog.css.map */
+
+/* Состояние остатков магазина */
+.products__stock {
+  min-height: 18px;
+  margin: 4px 0 8px;
+  font-size: 13px;
+  color: #5a9ab3;
+}
+.products__stock_sold-out {
+  color: #df8f96;
+  font-weight: 700;
+}
+.products__card_sold-out > img {
+  opacity: 0.45;
+  filter: grayscale(0.35);
+}
+.products__card_sold-out .products__btn {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+.products__increase:disabled,
+.modal__increase:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}

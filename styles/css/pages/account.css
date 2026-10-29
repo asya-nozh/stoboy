@@ -1796,3 +1796,45 @@ main {
 }
 
 /*# sourceMappingURL=account.css.map */
+
+.account-auth-required,
+.store-empty {
+  width: min(760px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 48px 32px;
+  box-sizing: border-box;
+  border: 4px solid #df969d;
+  border-radius: 28px;
+  text-align: center;
+  background: #fff4f1;
+  color: #df969d;
+}
+.account-auth-required:not(.active) {
+  display: none;
+}
+.account-auth-required h2,
+.store-empty h2 {
+  margin-bottom: 18px;
+}
+.account-auth-required p,
+.store-empty p {
+  margin-bottom: 24px;
+}
+.account-auth-required a,
+.store-empty a {
+  padding: 12px 24px;
+  border-radius: 12px;
+  color: #fff;
+  background: #df969d;
+}
+.delivery__status {
+  color: #df969d;
+}
+.delivery__content_center,
+.order__content_center {
+  flex-wrap: wrap;
+}
+.delivery__card,
+.order__card {
+  min-width: 150px;
+}

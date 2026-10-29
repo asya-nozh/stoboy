@@ -1,260 +1,161 @@
+'use strict';
+
 document.addEventListener('DOMContentLoaded', () => {
-  const buttons = document.querySelectorAll('.navigation__links button, .navigation__exit, .exit__btn-no');
-  const sections = document.querySelectorAll('.account__sections');
+  const store = window.StoboyStore;
+  const user = store.getCurrentUser();
+  const sections = Array.from(document.querySelectorAll('.account__sections'));
+  const navigationButtons = Array.from(document.querySelectorAll('.navigation__links button'));
+  const exitButton = document.querySelector('.navigation__exit');
+  const accountContent = document.querySelector('.account__content');
 
-  buttons.forEach(button => {
-    button.addEventListener('click', () => {
-      // Убираем active со всех кнопок
-      buttons.forEach(btn => btn.classList.remove('active'));
+  function escapeHtml(value) {
+    return String(value ?? '').replace(/[&<>'"]/g, symbol => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[symbol]));
+  }
 
-      // Добавляем active на нажатую кнопку
-      button.classList.add('active');
+  function formatDate(value) {
+    return new Intl.DateTimeFormat('ru-RU').format(new Date(`${value}T12:00:00`));
+  }
 
-      // Показываем нужный блок
-      const target = button.dataset.target;
-      sections.forEach(section => {
-        if (section.dataset.section === target) {
-          section.classList.add('active');
-        } else {
-          section.classList.remove('active');
-        }
-      });
+  function activate(target) {
+    sections.forEach(section => section.classList.toggle('active', section.dataset.section === target));
+    navigationButtons.forEach(button => button.classList.toggle('active', button.dataset.target === target));
+    exitButton?.classList.toggle('active', target === 'exit');
+    document.querySelector('.account-auth-required')?.classList.toggle('active', target === 'auth');
+  }
+
+  navigationButtons.forEach(button => button.addEventListener('click', () => activate(button.dataset.target)));
+  exitButton?.addEventListener('click', () => activate('exit'));
+
+  if (!user) {
+    ['deliveries', 'orders', 'personal'].forEach(target => {
+      document.querySelector(`.navigation__links button[data-target="${target}"]`)?.closest('div')?.setAttribute('hidden', '');
     });
-  });
-});
+    exitButton.hidden = true;
+    sections.filter(section => section.dataset.section !== 'privacy').forEach(section => { section.hidden = true; });
+    const authRequired = document.createElement('section');
+    authRequired.className = 'account-auth-required active';
+    authRequired.innerHTML = '<h2>личный кабинет доступен после входа</h2><p>Авторизуйтесь, чтобы видеть свои покупки, доставки и личные данные.</p><a href="log-reg.html">войти или зарегистрироваться</a>';
+    accountContent.prepend(authRequired);
+    activate('auth');
+    return;
+  }
 
-document.querySelectorAll('.delivery__track-number').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const span = btn.querySelector('span');
-    if (span) {
-      const text = span.textContent;
-      navigator.clipboard.writeText(text).then(() => {
-        console.log('Скопировано:', text);
-      }).catch(err => {
-        console.error('Ошибка копирования:', err);
+  renderDeliveries(user.orders);
+  renderOrders(user.orders);
+  initializeProfile(user);
+  initializeLogout();
+  activate('deliveries');
+
+  function itemCards(order) {
+    return order.items.map(item => {
+      const title = store.productTitle(item.productId);
+      return `<article class="order__card delivery__card">
+        <h3>${escapeHtml(title)}</h3>
+        <p>${item.quantity} × ${store.formatMoney(item.price)}</p>
+        <p>${store.formatMoney(item.quantity * item.price)}</p>
+      </article>`;
+    }).join('');
+  }
+
+  function renderDeliveries(orders) {
+    const container = document.querySelector('.deliveries');
+    if (!orders.length) {
+      container.innerHTML = '<section class="store-empty account__section-content"><h2>доставок пока нет</h2><p>После оформления заказа здесь появится его статус.</p><a href="catalog.html">перейти в каталог</a></section>';
+      return;
+    }
+    container.innerHTML = orders.map(order => `
+      <section class="delivery">
+        <div class="delivery__content account__section-content">
+          <h2><span>//</span> заказ ${escapeHtml(order.id)} от <time datetime="${order.date}">${formatDate(order.date)}</time></h2>
+          <div class="delivery__content_top">
+            <div class="delivery__adress"><img src="../assets/images/common/stickers/map.svg" alt=""><p><span>${escapeHtml(order.address)}</span><span>${escapeHtml(order.deliveryType)}</span></p></div>
+            ${order.trackNumber ? `<button class="delivery__track-number" type="button">трек-номер <span>${escapeHtml(order.trackNumber)}</span></button>` : '<p class="delivery__status">трек-номер появится после отправки</p>'}
+          </div>
+          <div class="delivery__content_center">${itemCards(order)}</div>
+          <div class="delivery__content_bottom"><div class="order__links"><a href="../index.html#faq">? появился вопрос</a></div><div><p>${escapeHtml(order.status)}</p><p>итого: ${store.formatMoney(store.orderTotal(order))}</p></div></div>
+        </div>
+      </section>`).join('');
+    container.querySelectorAll('.delivery__track-number').forEach(button => button.addEventListener('click', async () => {
+      const track = button.querySelector('span').textContent;
+      try {
+        await navigator.clipboard.writeText(track);
+        const original = button.innerHTML;
+        button.textContent = 'скопировано';
+        setTimeout(() => { button.innerHTML = original; }, 1500);
+      } catch (_) {
+        button.title = track;
+      }
+    }));
+  }
+
+  function renderOrders(orders) {
+    const container = document.querySelector('.orders');
+    if (!orders.length) {
+      container.innerHTML = '<section class="store-empty account__section-content"><h2>покупок пока нет</h2><p>Соберите первую корзинку — заказ появится здесь.</p><a href="catalog.html">перейти в каталог</a></section>';
+      return;
+    }
+    container.innerHTML = orders.map(order => `
+      <section class="order">
+        <div class="order__content account__section-content">
+          <h2><span>//</span> заказ ${escapeHtml(order.id)} от <time datetime="${order.date}">${formatDate(order.date)}</time></h2>
+          <div class="order__content_center">${itemCards(order)}</div>
+          <div class="order__content_bottom"><div class="order__links"><a href="../index.html#faq">? появился вопрос</a></div><div class="order__sum"><p>итого: <span>${store.formatMoney(store.orderTotal(order))}</span></p></div></div>
+        </div>
+      </section>`).join('');
+  }
+
+  function initializeProfile(currentUser) {
+    const form = document.getElementById('questionForm');
+    if (!form) return;
+    const fields = ['surname', 'firstname', 'patronymic', 'phone', 'email'];
+    fields.forEach(name => { form.elements[name].value = currentUser[name] || ''; });
+    document.querySelector('.personal__name').textContent = currentUser.firstname;
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      fields.forEach(name => {
+        form.elements[name].classList.remove('invalid');
+        form.querySelector(`.personal__error_${name}`).textContent = '';
       });
-    }
-  });
-});
-
-
-
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    const sections = document.querySelectorAll('.delivery__content_center, .order__content_center');
-
-    function updateVisibleCards() {
-        const screenWidth = window.innerWidth;
-        let visibleCount;
-
-        // Настрой лимиты по ширине
-        if (screenWidth >= 1024) {
-            visibleCount = 3; // 3 карточки + кнопка = 4
-        } else if (screenWidth >= 768) {
-            visibleCount = 2;
-        } else {
-            visibleCount = 1;
+      const data = Object.fromEntries(fields.map(name => [name, form.elements[name].value.trim()]));
+      let invalid = false;
+      ['surname', 'firstname'].forEach(name => {
+        if (!/^[а-яА-ЯёЁa-zA-Z-]{2,50}$/.test(data[name])) {
+          form.elements[name].classList.add('invalid');
+          form.querySelector(`.personal__error_${name}`).textContent = 'Введите корректное значение';
+          invalid = true;
         }
-
-        sections.forEach(section => {
-            const cards = Array.from(section.querySelectorAll('.delivery__card, .order__card'));
-            const moreBtn = section.querySelector('.last');
-
-            // Сброс отображения
-            cards.forEach(card => (card.style.display = ''));
-
-            if (cards.length <= visibleCount) {
-                if (moreBtn) moreBtn.style.display = 'none';
-                return;
-            }
-
-            // Спрятать лишние карточки
-            cards.forEach((card, index) => {
-                if (index >= visibleCount) card.style.display = 'none';
-            });
-
-            // Обновить кнопку
-            if (moreBtn) {
-                const hiddenCount = cards.length - visibleCount;
-                moreBtn.textContent = `ещё ${hiddenCount}`;
-                moreBtn.style.display = 'inline-block';
-
-                moreBtn.onclick = () => {
-                    cards.forEach(card => (card.style.display = ''));
-                    moreBtn.style.display = 'none';
-                };
-            }
-        });
-    }
-
-    updateVisibleCards();
-    window.addEventListener('resize', updateVisibleCards);
-});
-
-
-
-
-
-
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("questionForm");
-
-  const surnameInput = form.querySelector('input[name="surname"]');
-  const firstnameInput = form.querySelector('input[name="firstname"]');
-  const patronymicInput = form.querySelector('input[name="patronymic"]');
-  const phoneInput = form.querySelector('input[name="phone"]');
-  const emailInput = form.querySelector('input[name="email"]');
-  const submitButton = form.querySelector('.personal__submit');
-
-  const surnameError = form.querySelector(".personal__error_surname");
-  const firstnameError = form.querySelector(".personal__error_firstname");
-  const patronymicError = form.querySelector(".personal__error_patronymic");
-  const phoneError = form.querySelector(".personal__error_phone");
-  const emailError = form.querySelector(".personal__error_email");
-
-  // Сохраняем начальные значения
-  const initialData = {
-    surname: surnameInput.value.trim(),
-    firstname: firstnameInput.value.trim(),
-    patronymic: patronymicInput.value.trim(),
-    phone: phoneInput.value.trim(),
-    email: emailInput.value.trim()
-  };
-
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    let hasError = false;
-
-    // Сброс ошибок
-    [surnameError, firstnameError, patronymicError, phoneError, emailError].forEach(err => err.textContent = "");
-    [surnameInput, firstnameInput, patronymicInput, phoneInput, emailInput].forEach(input => input.classList.remove("invalid"));
-
-    const validateName = (value) => {
-      const trimmed = value.trim();
-      const regex = /^[а-яА-ЯёЁa-zA-Z-]+$/;
-      return trimmed.length >= 2 && trimmed.length <= 50 && regex.test(trimmed);
-    };
-
-    const capitalize = (str) => {
-      const trimmed = str.trim();
-      return trimmed.charAt(0).toUpperCase() + trimmed.slice(1).toLowerCase();
-    };
-
-    // Фамилия
-    let surname = surnameInput.value;
-    if (surname.trim() === "") {
-      surnameError.textContent = "❗ введите фамилию";
-      surnameInput.classList.add("invalid");
-      hasError = true;
-    } else if (!validateName(surname)) {
-      surnameError.textContent = "❗ введите корректную фамилию";
-      surnameInput.classList.add("invalid");
-      hasError = true;
-    } else {
-      surname = capitalize(surname);
-      surnameInput.value = surname;
-    }
-
-    // Имя
-    let firstname = firstnameInput.value;
-    if (firstname.trim() === "") {
-      firstnameError.textContent = "❗ введите имя";
-      firstnameInput.classList.add("invalid");
-      hasError = true;
-    } else if (!validateName(firstname)) {
-      firstnameError.textContent = "❗ введите корректное имя";
-      firstnameInput.classList.add("invalid");
-      hasError = true;
-    } else {
-      firstname = capitalize(firstname);
-      firstnameInput.value = firstname;
-    }
-
-    // Отчество
-    let patronymic = patronymicInput.value.trim();
-    if (patronymic !== "") {
-      if (!validateName(patronymic)) {
-        patronymicError.textContent = "❗ некорректное отчество";
-        patronymicInput.classList.add("invalid");
-        hasError = true;
-      } else {
-        patronymic = capitalize(patronymic);
-        patronymicInput.value = patronymic;
+      });
+      if (data.phone.replace(/\D/g, '').length !== 11) {
+        form.elements.phone.classList.add('invalid');
+        form.querySelector('.personal__error_phone').textContent = 'Введите телефон из 11 цифр';
+        invalid = true;
       }
-    }
-
-    // Телефон
-    const phoneValue = phoneInput.value.trim();
-    const phonePattern = /^[\d\s()+-]+$/;
-    const digitCount = (phoneValue.match(/\d/g) || []).length;
-
-    if (phoneValue === "") {
-      phoneError.textContent = "📞 введите телефон";
-      phoneInput.classList.add("invalid");
-      hasError = true;
-    } else if (!phonePattern.test(phoneValue)) {
-      phoneError.textContent = "📞 недопустимые символы";
-      phoneInput.classList.add("invalid");
-      hasError = true;
-    } else if (digitCount < 11) {
-      phoneError.textContent = "📞 слишком короткий номер";
-      phoneInput.classList.add("invalid");
-      hasError = true;
-    } else if (digitCount > 11) {
-      phoneError.textContent = "📞 слишком длинный номер";
-      phoneInput.classList.add("invalid");
-      hasError = true;
-    }
-
-    // Email
-    const emailValue = emailInput.value.trim();
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (emailValue === "") {
-      emailError.textContent = "💌 введите почту";
-      emailInput.classList.add("invalid");
-      hasError = true;
-    } else if (!emailPattern.test(emailValue)) {
-      emailError.textContent = "💌 неверный формат почты";
-      emailInput.classList.add("invalid");
-      hasError = true;
-    }
-
-    // Проверка изменений
-    const isChanged =
-      initialData.surname !== surnameInput.value.trim() ||
-      initialData.firstname !== firstnameInput.value.trim() ||
-      initialData.patronymic !== patronymicInput.value.trim() ||
-      initialData.phone !== phoneInput.value.trim() ||
-      initialData.email !== emailInput.value.trim();
-
-    if (!hasError) {
-      if (!isChanged) {
-        const originalText = submitButton.textContent;
-        submitButton.textContent = "изменений нет";
-        submitButton.disabled = true;
-
-        setTimeout(() => {
-          submitButton.textContent = originalText;
-          submitButton.disabled = false;
-        }, 2000);
-      } else {
-        alert("✅ Данные успешно сохранены!");
-        // Обновляем заголовок с именем
-        const nameSpan = document.querySelector('.personal__name');
-        if (nameSpan) {
-          nameSpan.textContent = firstname;
-        }
-        // Обновляем исходные значения
-        initialData.surname = surnameInput.value.trim();
-        initialData.firstname = firstnameInput.value.trim();
-        initialData.patronymic = patronymicInput.value.trim();
-        initialData.phone = phoneInput.value.trim();
-        initialData.email = emailInput.value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+        form.elements.email.classList.add('invalid');
+        form.querySelector('.personal__error_email').textContent = 'Введите корректную почту';
+        invalid = true;
       }
-    }
-  });
+      if (invalid) return;
+      try {
+        const updated = store.updateProfile(data);
+        document.querySelector('.personal__name').textContent = updated.firstname;
+        const submit = form.querySelector('.personal__submit');
+        submit.textContent = 'сохранено';
+        setTimeout(() => { submit.textContent = 'сохранить изменения'; }, 1600);
+      } catch (profileError) {
+        form.querySelector('.personal__error_email').textContent = profileError.message;
+      }
+    });
+  }
+
+  function initializeLogout() {
+    const cancel = document.querySelector('.exit__btn-no');
+    const confirm = document.querySelector('.exit__btn-yes');
+    cancel?.addEventListener('click', event => { event.preventDefault(); activate('personal'); });
+    confirm?.addEventListener('click', event => {
+      event.preventDefault();
+      store.logout();
+      window.location.href = '../index.html';
+    });
+  }
 });
-
-

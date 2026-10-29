@@ -591,3 +591,18 @@ body {
 }
 
 /*# sourceMappingURL=log-reg.css.map */
+
+.auth-demo,
+.auth-current-user {
+  margin-top: 18px;
+  padding: 14px 18px;
+  border: 2px solid #df969d;
+  border-radius: 12px;
+  color: #df969d;
+  background: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+}
+.auth-current-user a {
+  color: #5a9ab3;
+  text-decoration: underline;
+}
