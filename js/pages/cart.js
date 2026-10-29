@@ -54,15 +54,59 @@ document.addEventListener('DOMContentLoaded', () => {
           <input name="address" type="text" placeholder="город, улица, дом или пункт выдачи" required>
         </label>
         <label>способ доставки
-          <select name="deliveryType">
-            <option>Пункт выдачи CDEK</option>
-            <option>Курьерская доставка</option>
-          </select>
+          <div class="checkout-select" data-checkout-select>
+            <input name="deliveryType" type="hidden" value="Пункт выдачи СДЭК">
+            <button class="checkout-select__button" type="button" aria-haspopup="listbox" aria-expanded="false">
+              <span>Пункт выдачи СДЭК</span><span class="checkout-select__arrow" aria-hidden="true"></span>
+            </button>
+            <div class="checkout-select__options" role="listbox" hidden>
+              <button class="checkout-select__option active" type="button" role="option" aria-selected="true" data-value="Пункт выдачи СДЭК">Пункт выдачи СДЭК</button>
+              <button class="checkout-select__option" type="button" role="option" aria-selected="false" data-value="Курьерская доставка">Курьерская доставка</button>
+            </div>
+          </div>
         </label>
         <p class="checkout-form__error" role="alert"></p>
         <button class="processing__checkout" type="submit">оформить заказ</button>
       </form>`;
-    processing.querySelector('.checkout-form').addEventListener('submit', event => {
+    const form = processing.querySelector('.checkout-form');
+    const customSelect = form.querySelector('[data-checkout-select]');
+    const selectButton = customSelect.querySelector('.checkout-select__button');
+    const selectOptions = customSelect.querySelector('.checkout-select__options');
+    const selectInput = customSelect.querySelector('input[name="deliveryType"]');
+
+    function closeSelect() {
+      customSelect.classList.remove('open');
+      selectButton.setAttribute('aria-expanded', 'false');
+      selectOptions.hidden = true;
+    }
+
+    selectButton.addEventListener('click', () => {
+      const willOpen = !customSelect.classList.contains('open');
+      if (willOpen) {
+        customSelect.classList.add('open');
+        selectButton.setAttribute('aria-expanded', 'true');
+        selectOptions.hidden = false;
+      } else {
+        closeSelect();
+      }
+    });
+    selectOptions.addEventListener('click', event => {
+      const option = event.target.closest('.checkout-select__option');
+      if (!option) return;
+      selectInput.value = option.dataset.value;
+      selectButton.querySelector('span').textContent = option.dataset.value;
+      selectOptions.querySelectorAll('.checkout-select__option').forEach(item => {
+        const selected = item === option;
+        item.classList.toggle('active', selected);
+        item.setAttribute('aria-selected', String(selected));
+      });
+      closeSelect();
+    });
+    document.addEventListener('click', event => {
+      if (!customSelect.contains(event.target)) closeSelect();
+    });
+
+    form.addEventListener('submit', event => {
       event.preventDefault();
       const form = event.currentTarget;
       const error = form.querySelector('.checkout-form__error');

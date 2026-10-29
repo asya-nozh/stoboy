@@ -907,8 +907,7 @@ main {
   gap: 7px;
   color: #df969d;
 }
-.checkout-form input,
-.checkout-form select {
+.checkout-form input {
   width: 100%;
   box-sizing: border-box;
   padding: 12px;
@@ -917,6 +916,100 @@ main {
   color: #df969d;
   background: #fff;
   font: inherit;
+}
+.checkout-form input::placeholder {
+  color: #e09ba0;
+  opacity: 0.62;
+}
+.checkout-form input:focus {
+  outline: none;
+  border-color: #c96472;
+  box-shadow: 0 0 0 3px rgba(223, 150, 157, 0.18);
+  background: #fff7f5;
+  color: #c96472;
+}
+.checkout-form input::selection {
+  color: #fff;
+  background: #c96472;
+}
+.checkout-form input:-webkit-autofill,
+.checkout-form input:-webkit-autofill:hover,
+.checkout-form input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #c96472;
+  -webkit-box-shadow: 0 0 0 1000px #fff7f5 inset;
+  caret-color: #c96472;
+  border-color: #c96472;
+}
+.checkout-select {
+  position: relative;
+  color: #df969d;
+}
+.checkout-select__button {
+  width: 100%;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 11px 14px;
+  border: 2px solid #df969d;
+  border-radius: 10px;
+  color: #df969d;
+  background: #fff;
+  font: inherit;
+  text-align: left;
+}
+.checkout-select.open .checkout-select__button,
+.checkout-select__button:focus-visible {
+  outline: none;
+  border-color: #c96472;
+  box-shadow: 0 0 0 3px rgba(223, 150, 157, 0.18);
+  background: #fff7f5;
+}
+.checkout-select__arrow {
+  width: 9px;
+  height: 9px;
+  flex: 0 0 auto;
+  border-right: 2px solid #c96472;
+  border-bottom: 2px solid #c96472;
+  transform: rotate(45deg) translateY(-3px);
+  transition: transform 0.2s ease;
+}
+.checkout-select.open .checkout-select__arrow {
+  transform: rotate(225deg) translate(-2px, -1px);
+}
+.checkout-select__options {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 7px);
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  padding: 6px;
+  border: 2px solid #df969d;
+  border-radius: 12px;
+  background: #fff7f5;
+  box-shadow: 0 10px 24px rgba(126, 72, 80, 0.18);
+}
+.checkout-select__option {
+  width: 100%;
+  padding: 11px 12px;
+  border: 0;
+  border-radius: 8px;
+  color: #c96472;
+  background: transparent;
+  font: inherit;
+  text-align: left;
+}
+.checkout-select__option:hover,
+.checkout-select__option:focus-visible {
+  outline: none;
+  color: #fff;
+  background: #e8a5aa;
+}
+.checkout-select__option.active {
+  color: #fff;
+  background: #d77f89;
 }
 .checkout-form__error {
   min-height: 20px;

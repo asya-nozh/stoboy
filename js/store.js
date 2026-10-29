@@ -26,8 +26,8 @@
 
   const productById = Object.fromEntries(products.map(product => [product.id, product]));
 
-  function order(id, date, status, address, deliveryType, trackNumber, items) {
-    return { id, date, status, address, deliveryType, trackNumber, items };
+  function order(id, date, status, address, deliveryType, trackNumber, items, receivedDate = '') {
+    return { id, date, status, address, deliveryType, trackNumber, items, receivedDate };
   }
 
   const seedUsers = [
@@ -42,7 +42,7 @@
         order('STB-0981', '2026-09-27', 'Получен', 'Москва, проспект Мира, 95', 'Курьерская доставка', '2749183650', [
           { productId: 'box1', quantity: 1, price: 2500 },
           { productId: 'card-moti', quantity: 2, price: 150 }
-        ])
+        ], '2026-10-01')
       ]
     },
     {
@@ -83,6 +83,16 @@
         products.forEach(product => {
           if (!state.products[product.id]) state.products[product.id] = { stock: product.stock };
         });
+        state.users.forEach(user => {
+          (user.orders || []).forEach(userOrder => {
+            if (typeof userOrder.receivedDate !== 'string') {
+              userOrder.receivedDate = userOrder.id === 'STB-0981'
+                ? '2026-10-01'
+                : (userOrder.status === 'Получен' ? userOrder.date : '');
+            }
+          });
+        });
+        save(state);
         return state;
       }
     } catch (error) {

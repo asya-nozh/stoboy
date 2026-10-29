@@ -1838,3 +1838,30 @@ main {
 .order__card {
   min-width: 150px;
 }
+.delivery__card img,
+.order__card img {
+  width: 134px;
+  height: 134px;
+  object-fit: cover;
+  background: #fff;
+}
+.delivery__card .order-item__total,
+.order__card .order-item__total {
+  font-weight: 700;
+  color: #c96472;
+}
+.delivery__content_bottom .delivery__sum {
+  color: #e09ba0;
+  text-align: right;
+}
+.delivery__content_bottom .delivery__sum p,
+.delivery__content_bottom .delivery__sum span,
+.delivery__content_bottom .delivery__state {
+  color: #e09ba0;
+}
+.delivery__tracking-link {
+  font-weight: 700;
+}
+.order__content_top .order__date > span {
+  color: #de737b;
+}
