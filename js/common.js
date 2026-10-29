@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const menuIcon = menuButton.querySelector('img');
   const mobileNav = document.querySelector('.header__mobile-nav');
   const overlay = document.querySelector('.menu-overlay');
+  const assetBase = window.location.pathname.includes('/pages/') ? '../assets' : 'assets';
 
   function toggleMenu() {
     mobileNav.classList.toggle('active');
@@ -11,9 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Меняем иконку
     if (mobileNav.classList.contains('active')) {
-      menuIcon.src = '/assets/images/ui/close-menu.svg';
+      menuIcon.src = `${assetBase}/images/ui/close-menu.svg`;
     } else {
-      menuIcon.src = '/assets/images/ui/open-menu.svg';
+      menuIcon.src = `${assetBase}/images/ui/open-menu.svg`;
     }
   }
 
@@ -21,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     mobileNav.classList.remove('active');
     overlay.classList.remove('active');
     document.body.classList.remove('no-scroll');
-    menuIcon.src = '/assets/images/ui/open-menu.svg';
+    menuIcon.src = `${assetBase}/images/ui/open-menu.svg`;
   }
 
   // Открытие / закрытие меню
